@@ -8,6 +8,7 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
@@ -22,6 +23,7 @@ interface Partner {
   flag: string;    // country code for decoration
   role: string;
   accent: string;  // brand-approximate accent shown on hover
+  logo: string;    // path to SVG in /public/images/partners/
 }
 
 const PARTNERS: Partner[] = [
@@ -32,6 +34,7 @@ const PARTNERS: Partner[] = [
     flag: "KZ",
     role: "Raw Material",
     accent: "#1E4080",
+    logo: "/images/partners/arcelormittal.svg",
   },
   {
     name: "EVRAZ",
@@ -40,6 +43,7 @@ const PARTNERS: Partner[] = [
     flag: "RU",
     role: "Raw Material",
     accent: "#B8242A",
+    logo: "/images/partners/evraz.svg",
   },
   {
     name: "HUAYE",
@@ -48,6 +52,7 @@ const PARTNERS: Partner[] = [
     flag: "CN",
     role: "Technology",
     accent: "#C8321C",
+    logo: "/images/partners/huaye.svg",
   },
   {
     name: "SAP",
@@ -56,6 +61,7 @@ const PARTNERS: Partner[] = [
     flag: "DE",
     role: "Software / ERP",
     accent: "#0070F2",
+    logo: "/images/partners/sap.svg",
   },
   {
     name: "MMK",
@@ -64,6 +70,7 @@ const PARTNERS: Partner[] = [
     flag: "RU",
     role: "Raw Material",
     accent: "#1A4A9C",
+    logo: "/images/partners/mmk.svg",
   },
   {
     name: "TTZ",
@@ -72,6 +79,7 @@ const PARTNERS: Partner[] = [
     flag: "UZ",
     role: "Industry Partner",
     accent: "#2A3E72",
+    logo: "/images/partners/ttz.svg",
   },
 ];
 
@@ -122,18 +130,23 @@ function PartnerCard({ partner }: { partner: Partner }) {
         {partner.flag}
       </span>
 
-      {/* Company name */}
-      <span
-        className="font-mono font-bold text-center leading-none block mb-3"
-        style={{
-          fontSize: partner.short.length > 6 ? "clamp(0.75rem, 1.4vw, 1rem)" : "clamp(1rem, 2vw, 1.4rem)",
-          letterSpacing: partner.short.length > 6 ? "0.04em" : "0.08em",
-          color: hovered ? partner.accent : "var(--text-dark)",
-          transition: "color 0.3s ease",
-        }}
+      {/* Logo image */}
+      <div
+        className="relative flex items-center justify-center mb-3"
+        style={{ width: "100%", height: 48 }}
       >
-        {partner.short}
-      </span>
+        <Image
+          src={partner.logo}
+          alt={partner.name}
+          fill
+          sizes="(max-width: 768px) 50vw, 16vw"
+          style={{
+            objectFit: "contain",
+            filter: hovered ? "none" : "grayscale(100%)",
+            transition: "filter 0.3s ease",
+          }}
+        />
+      </div>
 
       {/* Role */}
       <span
@@ -316,10 +329,10 @@ export default function Partners() {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 py-24 lg:py-32">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-32">
 
         {/* ── Section heading ──────────────────────────────────── */}
-        <header className="partners-heading mb-14 lg:mb-16">
+        <header className="partners-heading mb-10 md:mb-14 lg:mb-16">
           <div className="flex items-center gap-4 mb-6">
             <span
               className="font-mono text-xs select-none"
@@ -329,9 +342,8 @@ export default function Partners() {
             </span>
             <div
               ref={headingLineRef}
-              className="flex-shrink-0"
+              className="flex-shrink-0 w-[80px] sm:w-[120px]"
               style={{
-                width: 120,
                 height: 2,
                 background: "var(--molten-500)",
                 transformOrigin: "left center",
@@ -339,7 +351,7 @@ export default function Partners() {
             />
             <span
               ref={headingLabelRef}
-              className="font-mono text-xs tracking-[0.28em] uppercase select-none"
+              className="font-mono text-xs tracking-[0.28em] uppercase select-none min-w-0 truncate"
               style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               {t("label")}

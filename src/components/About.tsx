@@ -162,10 +162,10 @@ export default function About() {
         </svg>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
 
         {/* ══ Section heading ══════════════════════════════════════════════ */}
-        <header className="about-heading mb-16 lg:mb-24">
+        <header className="about-heading mb-10 md:mb-16 lg:mb-24">
 
           {/* Label row: section number · line · label */}
           <div className="flex items-center gap-4 mb-6">
@@ -177,9 +177,8 @@ export default function About() {
             </span>
             <div
               ref={lineRef}
-              className="flex-shrink-0"
+              className="flex-shrink-0 w-[80px] sm:w-[120px]"
               style={{
-                width: 120,
                 height: 2,
                 background: "var(--molten-500)",
                 transformOrigin: "left center",
@@ -187,7 +186,7 @@ export default function About() {
             />
             <span
               ref={labelRef}
-              className="font-mono text-xs tracking-[0.28em] uppercase select-none"
+              className="font-mono text-xs tracking-[0.28em] uppercase select-none min-w-0 truncate"
               style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               {t("label")}
@@ -211,10 +210,10 @@ export default function About() {
         </header>
 
         {/* ══ Two-column body ══════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 xl:gap-20 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-16 xl:gap-20 items-start">
 
           {/* ── Left: company story (3/5 = 60%) ──────────────────────── */}
-          <div ref={storyRef} className="lg:col-span-3 space-y-5">
+          <div ref={storyRef} className="md:col-span-1 lg:col-span-3 space-y-5">
 
             {STORY.map((para, i) => (
               <p
@@ -266,14 +265,14 @@ export default function About() {
           </div>
 
           {/* ── Right: stats grid (2/5 = 40%) ────────────────────────── */}
-          <div ref={statsRef} className="lg:col-span-2">
+          <div ref={statsRef} className="md:col-span-1 lg:col-span-2">
             <div className="grid grid-cols-2 gap-[1px] outline outline-[1px]"
               style={{ outlineColor: "rgba(100,128,152,0.18)" }}
             >
               {STATS.map((stat, i) => (
                 <div
                   key={i}
-                  className="about-stat-card flex flex-col gap-2 p-5 lg:p-6"
+                  className="about-stat-card flex flex-col gap-2 p-4 md:p-5 lg:p-6"
                   style={{
                     background: "rgba(255,255,255,0.62)",
                     borderTop: "2px solid var(--molten-500)",
@@ -285,7 +284,7 @@ export default function About() {
                     start={stat.start}
                     suffix={stat.suffix}
                     duration={stat.duration}
-                    className="text-[2.4rem] xl:text-[2.8rem] font-bold"
+                    className="text-[1.8rem] md:text-[2rem] lg:text-[2.4rem] xl:text-[2.8rem] font-bold"
                     style={{ color: "var(--navy-700)" }}
                   />
 

@@ -53,10 +53,10 @@ export default function Footer() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20">
 
         {/* ── Three-column main area ──────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-16 py-12 md:py-16 lg:py-20">
 
           {/* ── Col 1: Logo + tagline ──────────────────────── */}
           <div className="flex flex-col gap-6">

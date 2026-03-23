@@ -44,7 +44,7 @@ export default function Navbar() {
   /* ── Close drawer on desktop resize ─────────────────────── */
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setDrawerOpen(false);
+      if (window.innerWidth >= 1024) setDrawerOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -115,7 +115,7 @@ export default function Navbar() {
         ].join(" ")}
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-16 lg:h-20">
 
             {/* ── Logo ─────────────────────────────────────── */}
             <button
@@ -135,7 +135,7 @@ export default function Navbar() {
 
             {/* ── Desktop nav ──────────────────────────────── */}
             <nav
-              className="hidden md:flex items-center gap-8 lg:gap-10"
+              className="hidden lg:flex items-center gap-4 lg:gap-6 xl:gap-8"
               aria-label="Primary navigation"
             >
               {NAV_LINKS.map(({ label, id }) => {
@@ -146,7 +146,7 @@ export default function Navbar() {
                     onClick={() => scrollTo(id)}
                     className={[
                       "nav-link",
-                      "font-display font-semibold text-[11px] tracking-[0.18em] uppercase",
+                      "font-display font-semibold text-[11px] tracking-[0.18em] uppercase whitespace-nowrap",
                       "transition-colors duration-200 focus-visible:outline-none",
                       isActive
                         ? "text-text-white nav-link--active"
@@ -164,7 +164,7 @@ export default function Navbar() {
 
               {/* Language toggle */}
               <div
-                className="hidden md:flex items-center"
+                className="hidden lg:flex items-center"
                 role="group"
                 aria-label="Language selector"
               >
@@ -198,7 +198,7 @@ export default function Navbar() {
               {/* Hamburger — 3 lines → X */}
               <button
                 onClick={() => setDrawerOpen((v) => !v)}
-                className="md:hidden relative flex flex-col justify-center items-center w-10 h-10 gap-[5px] text-text-white focus-visible:outline-none"
+                className="lg:hidden relative flex flex-col justify-center items-center w-10 h-10 gap-[5px] text-text-white focus-visible:outline-none"
                 aria-label={drawerOpen ? "Close menu" : "Open menu"}
                 aria-expanded={drawerOpen}
               >
@@ -229,7 +229,7 @@ export default function Navbar() {
       {/* ── Mobile overlay (tap-to-close) ──────────────────────── */}
       <div
         className={[
-          "fixed inset-0 z-40 md:hidden",
+          "fixed inset-0 z-40 lg:hidden",
           "bg-bg-void/80 backdrop-blur-sm",
           "transition-opacity duration-300",
           drawerOpen
@@ -247,7 +247,7 @@ export default function Navbar() {
           "flex flex-col",
           "bg-bg-dark border-l border-border-subtle",
           "transition-transform duration-300",
-          "md:hidden",
+          "lg:hidden",
           drawerOpen ? "translate-x-0" : "translate-x-full",
         ].join(" ")}
         aria-label="Mobile navigation"

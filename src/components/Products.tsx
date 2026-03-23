@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import { Circle, Square, RectangleHorizontal, Download } from "lucide-react";
+import { Circle, Square, RectangleHorizontal, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,7 +23,7 @@ interface Product {
   description: string;
   specs: string;
   gosts: string[];
-  pdf: string;
+  mailto: string;
   Icon: typeof Circle;
 }
 
@@ -38,7 +38,7 @@ export default function Products() {
       description: t("round_desc"),
       specs: t("round_specs"),
       gosts: ["GOST 10704", "GOST 10705", "GOST 3262"],
-      pdf: "/Truba.pdf",
+      mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Round%20Pipes",
       Icon: Circle,
     },
     {
@@ -47,7 +47,7 @@ export default function Products() {
       description: t("square_desc"),
       specs: t("square_specs"),
       gosts: ["GOST 8639", "GOST 13663"],
-      pdf: "/Profel.pdf",
+      mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Square%20Profiles",
       Icon: Square,
     },
     {
@@ -56,7 +56,7 @@ export default function Products() {
       description: t("profile_desc"),
       specs: t("profile_specs"),
       gosts: ["GOST 8645", "GOST 13663"],
-      pdf: "/Profel.pdf",
+      mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Profile%20Pipes",
       Icon: RectangleHorizontal,
     },
   ];
@@ -136,19 +136,19 @@ export default function Products() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
         {/* ── Section heading ──────────────────────────────────────── */}
-        <header className="products-heading mb-16 lg:mb-20">
+        <header className="products-heading mb-12 md:mb-16 lg:mb-20">
           <div className="flex items-center gap-4 mb-6">
             <span className="font-mono text-xs select-none" style={{ color: "var(--molten-500)" }}>04</span>
             <div
               ref={headingLineRef}
-              className="flex-shrink-0"
-              style={{ width: 120, height: 2, background: "var(--molten-500)", transformOrigin: "left center" }}
+              className="flex-shrink-0 w-[80px] sm:w-[120px]"
+              style={{ height: 2, background: "var(--molten-500)", transformOrigin: "left center" }}
             />
             <span
               ref={headingLabelRef}
-              className="font-mono text-xs tracking-[0.28em] uppercase select-none"
+              className="font-mono text-xs tracking-[0.28em] uppercase select-none min-w-0 truncate"
               style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               {t("label")}
@@ -170,7 +170,7 @@ export default function Products() {
         </header>
 
         {/* ── Product cards grid ───────────────────────────────────── */}
-        <div className="products-grid grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="products-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {PRODUCTS.map((product, i) => (
             <motion.div
               key={i}
@@ -258,11 +258,9 @@ export default function Products() {
                   ))}
                 </div>
 
-                {/* Download button */}
+                {/* Request specs via email */}
                 <a
-                  href={product.pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={product.mailto}
                   className="inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase py-2.5 px-4 transition-colors duration-200"
                   style={{
                     color: "var(--text-white)",
@@ -275,7 +273,7 @@ export default function Products() {
                     (e.currentTarget as HTMLElement).style.background = "var(--molten-500)";
                   }}
                 >
-                  <Download size={14} strokeWidth={2} />
+                  <Mail size={14} strokeWidth={2} />
                   {t("download")}
                 </a>
               </div>

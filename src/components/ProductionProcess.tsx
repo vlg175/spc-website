@@ -503,11 +503,11 @@ export default function ProductionProcess() {
       style={{ background: "var(--bg-deep)" }}
     >
       {/* ── Section heading ──────────────────────────────────────────── */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 pt-24 lg:pt-32 pb-8 lg:pb-12">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 pt-20 md:pt-24 lg:pt-32 pb-8 lg:pb-12">
         <div className="flex items-center gap-4 mb-6">
           <span className="font-mono text-xs select-none" style={{ color: "var(--molten-500)" }}>03</span>
-          <div className="flex-shrink-0" style={{ width: 120, height: 2, background: "var(--molten-500)" }} />
-          <span className="font-mono text-xs tracking-[0.28em] uppercase select-none" style={{ color: "var(--text-muted)" }}>
+          <div className="flex-shrink-0 w-[80px] sm:w-[120px]" style={{ height: 2, background: "var(--molten-500)" }} />
+          <span className="font-mono text-xs tracking-[0.28em] uppercase select-none min-w-0 truncate" style={{ color: "var(--text-muted)" }}>
             {t("label")}
           </span>
         </div>
@@ -582,7 +582,7 @@ export default function ProductionProcess() {
               />
 
               {/* Content card */}
-              <div className="relative z-10 max-w-xl px-8 lg:px-12 pt-28">
+              <div className="relative z-10 w-full max-w-2xl mx-auto px-8 lg:px-16 pt-28">
                 {/* Step number */}
                 <span
                   className="font-mono text-[5rem] lg:text-[7rem] font-bold leading-none select-none"
@@ -716,7 +716,7 @@ export default function ProductionProcess() {
       </div>
 
       {/* ── Section motto ─────────────────────────────────────────────── */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 pb-20 lg:pb-28">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 pb-16 md:pb-20 lg:pb-28">
         <div style={{ borderTop: "1px solid var(--border-dim)" }} className="pt-8">
           <p
             className="font-display font-bold uppercase tracking-tight"

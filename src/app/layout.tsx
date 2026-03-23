@@ -39,6 +39,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 /* ── Metadata ──────────────────────────────────────────────── */
 export const metadata: Metadata = {
+  metadataBase: new URL("https://steelpipe.uz"),
   title: "SPC — Steel Pipe Company | ERW Steel Pipes",
   description:
     "ERW electric resistance welded steel pipe manufacturer. Uzbek-Chinese joint venture. SEZ Angren, Tashkent Region, Uzbekistan. Round, square and profile pipes to GOST and EN standards.",
@@ -48,16 +49,50 @@ export const metadata: Metadata = {
     "Uzbekistan steel",
     "GOST pipes",
     "SPC steel pipe company",
+    "steel pipe Angren",
+    "трубы ERW Узбекистан",
   ],
-  icons: { icon: "/favicon.ico" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      ru: "/ru",
+      en: "/en",
+      uz: "/uz",
+    },
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
+    other: [{ rel: "icon", url: "/favicon-192x192.png", sizes: "192x192" }],
+  },
   openGraph: {
     title: "SPC — Steel Pipe Company | ERW Steel Pipes",
     description:
       "ERW electric resistance welded steel pipe manufacturer. Uzbek-Chinese JV. SEZ Angren, Uzbekistan. GOST-certified round, square and profile pipes.",
     type: "website",
+    url: "https://steelpipe.uz",
     locale: "ru_RU",
     alternateLocale: ["en_US", "uz_UZ"],
     siteName: "SPC Steel Pipe Company",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "SPC — Steel Pipe Company | ERW Steel Pipes, Uzbekistan",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SPC — Steel Pipe Company | ERW Steel Pipes",
+    description:
+      "ERW steel pipe manufacturer. Uzbek-Chinese JV. SEZ Angren, Uzbekistan. GOST-certified.",
+    images: ["/opengraph-image.png"],
   },
 };
 

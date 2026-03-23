@@ -4,35 +4,52 @@
    Contact — Section 07
    Dark bg. Two-col layout: left = details + social icons, right = form.
    GSAP: heading reveal, left details stagger, form fields stagger.
-   Framer Motion: input focus glow. Visual-only form (no backend).
+   Framer Motion: input focus glow.
+   Form: react-hook-form → Formspree → sonner toast on success/error.
    ───────────────────────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast, Toaster } from "sonner";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, Loader2 } from "lucide-react";
 import { SocialIconsRow } from "@/components/SocialIcons";
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+
+/* ── Form field types ──────────────────────────────────────────────────── */
+interface FormValues {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
 
 /* ── Styled form field ─────────────────────────────────────────────────── */
 interface FieldProps {
   label: string;
-  name: string;
+  name: keyof FormValues;
   type?: string;
   rows?: number;
   focused: string | null;
   setFocused: (v: string | null) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register: any;
+  error?: string;
 }
 
-function Field({ label, name, type = "text", rows, focused, setFocused }: FieldProps) {
+function Field({ label, name, type = "text", rows, focused, setFocused, register, error }: FieldProps) {
   const isActive = focused === name;
+  const hasError = Boolean(error);
+
   const sharedStyle: React.CSSProperties = {
     width: "100%",
     background: "var(--bg-surface)",
-    border: `1px solid ${isActive ? "var(--molten-500)" : "var(--border-dim)"}`,
+    border: `1px solid ${hasError ? "var(--molten-500)" : isActive ? "var(--steel-400)" : "var(--border-dim)"}`,
     color: "var(--text-white)",
     padding: "0.75rem 1rem",
     fontFamily: "var(--font-body)",
@@ -42,6 +59,13 @@ function Field({ label, name, type = "text", rows, focused, setFocused }: FieldP
     transition: "border-color 0.22s ease",
     boxShadow: isActive ? "0 0 0 3px rgba(232,94,34,0.12)" : "none",
   };
+
+  const fieldProps = register(name, {
+    required: true,
+    ...(name === "email" && {
+      pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" },
+    }),
+  });
 
   return (
     <div className="contact-field">
@@ -56,21 +80,21 @@ function Field({ label, name, type = "text", rows, focused, setFocused }: FieldP
       {rows ? (
         <textarea
           id={name}
-          name={name}
           rows={rows}
           style={sharedStyle}
           onFocus={() => setFocused(name)}
-          onBlur={() => setFocused(null)}
+          {...fieldProps}
+          onBlur={(e: React.FocusEvent) => { setFocused(null); fieldProps.onBlur(e); }}
           placeholder=""
         />
       ) : (
         <input
           id={name}
-          name={name}
           type={type}
           style={sharedStyle}
           onFocus={() => setFocused(name)}
-          onBlur={() => setFocused(null)}
+          {...fieldProps}
+          onBlur={(e: React.FocusEvent) => { setFocused(null); fieldProps.onBlur(e); }}
           placeholder=""
         />
       )}
@@ -93,6 +117,8 @@ export default function Contact() {
   const headingLabelRef = useRef<HTMLSpanElement>(null);
   const headingTitleRef = useRef<HTMLHeadingElement>(null);
   const [focused, setFocused] = useState<string | null>(null);
+
+  const { register, handleSubmit, reset, formState: { isSubmitting, errors } } = useForm<FormValues>();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -181,6 +207,28 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
+  const onSubmit = async (data: FormValues) => {
+    if (!FORMSPREE_ID) {
+      toast.error("Form not configured. Please email us directly at jv.steelpipe@gmail.com");
+      return;
+    }
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        toast.success("Message sent! We'll reply within 1 business day.");
+        reset();
+      } else {
+        toast.error("Something went wrong. Please try again or email us directly.");
+      }
+    } catch {
+      toast.error("Network error. Please email us at jv.steelpipe@gmail.com");
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -188,6 +236,20 @@ export default function Contact() {
       className="relative overflow-hidden"
       style={{ background: "var(--bg-navy)" }}
     >
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: "var(--bg-dark)",
+            border: "1px solid var(--border-subtle)",
+            color: "var(--text-white)",
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.75rem",
+            letterSpacing: "0.05em",
+          },
+        }}
+      />
+
       {/* Grid overlay */}
       <div
         aria-hidden="true"
@@ -210,10 +272,10 @@ export default function Contact() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
 
         {/* ── Section heading ──────────────────────────────────── */}
-        <header className="contact-heading mb-16 lg:mb-20">
+        <header className="contact-heading mb-10 md:mb-16 lg:mb-20">
           <div className="flex items-center gap-4 mb-6">
             <span
               className="font-mono text-xs select-none"
@@ -223,9 +285,8 @@ export default function Contact() {
             </span>
             <div
               ref={headingLineRef}
-              className="flex-shrink-0"
+              className="flex-shrink-0 w-[80px] sm:w-[120px]"
               style={{
-                width: 120,
                 height: 2,
                 background: "var(--molten-500)",
                 transformOrigin: "left center",
@@ -233,7 +294,7 @@ export default function Contact() {
             />
             <span
               ref={headingLabelRef}
-              className="font-mono text-xs tracking-[0.28em] uppercase select-none"
+              className="font-mono text-xs tracking-[0.28em] uppercase select-none min-w-0 truncate"
               style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               {t("label")}
@@ -256,7 +317,7 @@ export default function Contact() {
         </header>
 
         {/* ── Two-column layout ────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24">
 
           {/* ── LEFT: details + social ───────────────────────── */}
           <div>
@@ -327,7 +388,7 @@ export default function Contact() {
           {/* ── RIGHT: form ──────────────────────────────────── */}
           <form
             className="contact-form"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit(onSubmit)}
             noValidate
           >
             <div className="space-y-5">
@@ -336,6 +397,8 @@ export default function Contact() {
                 name="name"
                 focused={focused}
                 setFocused={setFocused}
+                register={register}
+                error={errors.name?.message}
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <Field
@@ -344,6 +407,8 @@ export default function Contact() {
                   type="email"
                   focused={focused}
                   setFocused={setFocused}
+                  register={register}
+                  error={errors.email?.message}
                 />
                 <Field
                   label={t("field_phone")}
@@ -351,6 +416,7 @@ export default function Contact() {
                   type="tel"
                   focused={focused}
                   setFocused={setFocused}
+                  register={register}
                 />
               </div>
               <Field
@@ -359,32 +425,41 @@ export default function Contact() {
                 rows={5}
                 focused={focused}
                 setFocused={setFocused}
+                register={register}
+                error={errors.message?.message}
               />
             </div>
 
             {/* Submit */}
             <button
               type="submit"
+              disabled={isSubmitting}
               className="contact-submit group w-full mt-6 flex items-center justify-between px-6 py-4 font-mono text-xs tracking-[0.22em] uppercase"
               style={{
-                background: "var(--molten-500)",
+                background: isSubmitting ? "var(--molten-700)" : "var(--molten-500)",
                 color: "var(--text-white)",
                 border: "none",
-                cursor: "pointer",
+                cursor: isSubmitting ? "not-allowed" : "pointer",
                 transition: "background 0.2s ease",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--molten-600)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--molten-500)"; }}
+              onMouseEnter={(e) => {
+                if (!isSubmitting) (e.currentTarget as HTMLElement).style.background = "var(--molten-600)";
+              }}
+              onMouseLeave={(e) => {
+                if (!isSubmitting) (e.currentTarget as HTMLElement).style.background = "var(--molten-500)";
+              }}
             >
               <span>{t("submit")}</span>
-              <ArrowRight
-                size={16}
-                strokeWidth={2}
-                style={{
-                  transition: "transform 0.25s cubic-bezier(0.16,1,0.3,1)",
-                }}
-                className="group-hover:translate-x-1"
-              />
+              {isSubmitting ? (
+                <Loader2 size={16} strokeWidth={2} className="animate-spin" />
+              ) : (
+                <ArrowRight
+                  size={16}
+                  strokeWidth={2}
+                  style={{ transition: "transform 0.25s cubic-bezier(0.16,1,0.3,1)" }}
+                  className="group-hover:translate-x-1"
+                />
+              )}
             </button>
 
             {/* Small disclaimer */}

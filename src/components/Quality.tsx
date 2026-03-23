@@ -216,10 +216,10 @@ export default function Quality() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20 py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
 
         {/* ── Section heading ────────────────────────────────────── */}
-        <header className="quality-heading mb-16 lg:mb-20">
+        <header className="quality-heading mb-12 md:mb-16 lg:mb-20">
           <div className="flex items-center gap-4 mb-6">
             <span
               className="font-mono text-xs select-none"
@@ -229,9 +229,8 @@ export default function Quality() {
             </span>
             <div
               ref={headingLineRef}
-              className="flex-shrink-0"
+              className="flex-shrink-0 w-[80px] sm:w-[120px]"
               style={{
-                width: 120,
                 height: 2,
                 background: "var(--molten-500)",
                 transformOrigin: "left center",
@@ -239,7 +238,7 @@ export default function Quality() {
             />
             <span
               ref={headingLabelRef}
-              className="font-mono text-xs tracking-[0.28em] uppercase select-none"
+              className="font-mono text-xs tracking-[0.28em] uppercase select-none min-w-0 truncate"
               style={{ color: "var(--text-muted)", opacity: 0 }}
             >
               {t("label")}
@@ -273,7 +272,7 @@ export default function Quality() {
             return (
               <div
                 key={i}
-                className="quality-block relative flex flex-col p-8 lg:p-10"
+                className="quality-block relative flex flex-col p-6 md:p-8 lg:p-10"
                 style={{ background: "var(--bg-dark)" }}
               >
                 {/* Step number */}

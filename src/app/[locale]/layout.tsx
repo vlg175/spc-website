@@ -29,8 +29,50 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  /* ── JSON-LD — Organization schema ─────────────────────────── */
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Steel Pipe Company",
+    legalName: "ООО «STEEL PIPE COMPANY»",
+    url: "https://steelpipe.uz",
+    logo: "https://steelpipe.uz/logo_SPC.png",
+    foundingDate: "2018",
+    description:
+      "Uzbek-Chinese joint venture producing ERW electric resistance welded steel pipes and profiles. GOST-certified. Located in SEZ Angren Free Economic Zone, Uzbekistan.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Akhangaran",
+      addressRegion: "Tashkent Region",
+      addressCountry: "UZ",
+      streetAddress: "SEZ Angren, Promzona-3",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+998559000077",
+        contactType: "customer service",
+        availableLanguage: ["Russian", "Uzbek", "English"],
+      },
+      {
+        "@type": "ContactPoint",
+        email: "jv.steelpipe@gmail.com",
+        contactType: "sales",
+      },
+    ],
+    sameAs: [
+      "https://t.me/DiliSultonov",
+      "https://instagram.com/steelpipe_uz",
+    ],
+  };
+
   return (
     <NextIntlClientProvider messages={messages}>
+      {/* JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Syncs document.documentElement.lang to the active locale */}
       <LocaleSync locale={locale} />
       <Navbar />

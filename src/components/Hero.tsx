@@ -240,7 +240,7 @@ export default function Hero() {
         {/* ════════════════════════════════════════════════════════════════
             MAIN CONTENT
             ════════════════════════════════════════════════════════════════ */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-28 pb-44 md:pt-32 md:pb-56">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-24 pb-28 md:pt-32 md:pb-44 lg:pb-56">
 
           {/* Eyebrow — monospaced tag line */}
           <p
