@@ -1,26 +1,386 @@
+/* ================================================================
+   DESIGN TOKENS
+   All CSS custom properties. Use var(--*) anywhere in the project.
+   ================================================================ */
+@import "../styles/tokens.css";
+
+/* ================================================================
+   TAILWIND CSS v4
+   @theme maps tokens → Tailwind utility classes.
+   bg-navy-700, text-molten-500, border-steel-400, etc.
+   ================================================================ */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ── Navy ─────────────────────────────────────────────────── */
+  --color-navy-950:  var(--navy-950);
+  --color-navy-900:  var(--navy-900);
+  --color-navy-800:  var(--navy-800);
+  --color-navy-700:  var(--navy-700);
+  --color-navy-600:  var(--navy-600);
+  --color-navy-500:  var(--navy-500);
+  --color-navy-400:  var(--navy-400);
+  --color-navy-300:  var(--navy-300);
+  --color-navy-200:  var(--navy-200);
+  --color-navy-100:  var(--navy-100);
+
+  /* ── Steel ────────────────────────────────────────────────── */
+  --color-steel-900: var(--steel-900);
+  --color-steel-800: var(--steel-800);
+  --color-steel-700: var(--steel-700);
+  --color-steel-600: var(--steel-600);
+  --color-steel-500: var(--steel-500);
+  --color-steel-400: var(--steel-400);
+  --color-steel-300: var(--steel-300);
+  --color-steel-200: var(--steel-200);
+  --color-steel-100: var(--steel-100);
+  --color-steel-50:  var(--steel-50);
+
+  /* ── Molten (CTA accent) ──────────────────────────────────── */
+  --color-molten-900: var(--molten-900);
+  --color-molten-800: var(--molten-800);
+  --color-molten-700: var(--molten-700);
+  --color-molten-600: var(--molten-600);
+  --color-molten-500: var(--molten-500);
+  --color-molten-400: var(--molten-400);
+  --color-molten-300: var(--molten-300);
+  --color-molten-200: var(--molten-200);
+  --color-molten-100: var(--molten-100);
+
+  /* ── Copper / Bronze ──────────────────────────────────────── */
+  --color-copper-900: var(--copper-900);
+  --color-copper-800: var(--copper-800);
+  --color-copper-700: var(--copper-700);
+  --color-copper-600: var(--copper-600);
+  --color-copper-500: var(--copper-500);
+  --color-copper-400: var(--copper-400);
+  --color-copper-300: var(--copper-300);
+  --color-copper-200: var(--copper-200);
+  --color-copper-100: var(--copper-100);
+
+  /* ── Concrete (neutral) ───────────────────────────────────── */
+  --color-concrete-950: var(--concrete-950);
+  --color-concrete-900: var(--concrete-900);
+  --color-concrete-800: var(--concrete-800);
+  --color-concrete-700: var(--concrete-700);
+  --color-concrete-600: var(--concrete-600);
+  --color-concrete-500: var(--concrete-500);
+  --color-concrete-400: var(--concrete-400);
+  --color-concrete-300: var(--concrete-300);
+  --color-concrete-200: var(--concrete-200);
+  --color-concrete-100: var(--concrete-100);
+  --color-concrete-50:  var(--concrete-50);
+
+  /* ── Backgrounds ──────────────────────────────────────────── */
+  --color-bg-void:        var(--bg-void);
+  --color-bg-deep:        var(--bg-deep);
+  --color-bg-dark:        var(--bg-dark);
+  --color-bg-navy:        var(--bg-navy);
+  --color-bg-mid:         var(--bg-mid);
+  --color-bg-surface:     var(--bg-surface);
+  --color-bg-surface-alt: var(--bg-surface-alt);
+  --color-bg-light:       var(--bg-light);
+  --color-bg-pale:        var(--bg-pale);
+  --color-bg-steel-light: var(--bg-steel-light);
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --color-text-white:     var(--text-white);
+  --color-text-primary:   var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted:     var(--text-muted);
+  --color-text-dark:      var(--text-dark);
+  --color-text-mid:       var(--text-mid);
+
+  /* ── Status ───────────────────────────────────────────────── */
+  --color-status-success:       var(--status-success);
+  --color-status-success-light: var(--status-success-light);
+  --color-status-warning:       var(--status-warning);
+  --color-status-warning-light: var(--status-warning-light);
+  --color-status-error:         var(--status-error);
+  --color-status-error-light:   var(--status-error-light);
+  --color-status-info:          var(--status-info);
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-display: var(--font-display);
+  --font-body:    var(--font-body);
+  --font-mono:    var(--font-mono);
+
+  /* ── Border colors ────────────────────────────────────────── */
+  --color-border-faint:  var(--border-faint);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-dim:    var(--border-dim);
+  --color-border-bright: var(--border-bright);
+  --color-border-navy:   var(--border-navy);
+  --color-border-steel:  var(--border-steel);
+  --color-border-accent: var(--border-accent);
+  --color-border-copper: var(--border-copper);
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-xs:     var(--shadow-xs);
+  --shadow-sm:     var(--shadow-sm);
+  --shadow-md:     var(--shadow-md);
+  --shadow-lg:     var(--shadow-lg);
+  --shadow-deep:   var(--shadow-deep);
+  --shadow-navy:   var(--shadow-navy);
+  --shadow-molten: var(--shadow-molten);
+  --shadow-copper: var(--shadow-copper);
+
+  /* ── Easing ───────────────────────────────────────────────── */
+  --ease-out-expo:   var(--ease-out-expo);
+  --ease-out-quart:  var(--ease-out-quart);
+  --ease-industrial: var(--ease-industrial);
+
+  /* ── Border radius ────────────────────────────────────────── */
+  --radius-none: var(--radius-none);
+  --radius-xs:   var(--radius-xs);
+  --radius-sm:   var(--radius-sm);
+  --radius-md:   var(--radius-md);
+  --radius-lg:   var(--radius-lg);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+/* ================================================================
+   NEXT.JS IMAGE — both width and height set to auto so the
+   inline style props on each <Image> control final rendered
+   dimensions without triggering Next.js aspect-ratio warnings.
+   ================================================================ */
+img[data-nimg] {
+  width: auto;
+  height: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+/* ================================================================
+   SCROLLBAR — custom industrial style
+   ================================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--navy-700);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--molten-500);
+}
+
+
+/* ================================================================
+   BASE — html / body
+   ================================================================ */
+html {
+  /* scroll-behavior intentionally omitted — Lenis handles smooth scrolling */
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--molten-600);
+  color: var(--text-white);
+}
+
+/* ── Heading defaults ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--text-white);
+  text-transform: uppercase;
+}
+
+/* ── Mono elements ────────────────────────────────────────────── */
+code, pre, kbd, samp,
+.mono, [data-mono] {
+  font-family: var(--font-mono);
+}
+
+
+/* ================================================================
+   NAVBAR — underline draw animation (scaleX left → right)
+   ================================================================ */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--molten-500);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s var(--ease-out-expo);
+}
+.nav-link:hover::after,
+.nav-link--active::after {
+  transform: scaleX(1);
+}
+
+
+/* ================================================================
+   GRID PATTERNS
+   Technical drawing aesthetic. Overlaid on hero / section bgs.
+   ================================================================ */
+
+/* Primary: 60px grid, navy lines */
+.grid-pattern {
+  background-image:
+    linear-gradient(var(--grid-color-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color-primary) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+/* Fine: 60px major + 12px minor sub-grid */
+.grid-pattern-fine {
+  background-image:
+    linear-gradient(var(--grid-color-primary)   1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color-primary)   1px, transparent 1px),
+    linear-gradient(var(--grid-color-secondary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color-secondary) 1px, transparent 1px);
+  background-size:
+    var(--grid-size) var(--grid-size),
+    var(--grid-size) var(--grid-size),
+    var(--grid-sub)  var(--grid-sub),
+    var(--grid-sub)  var(--grid-sub);
+}
+
+/* Diagonal cross-hatch variant for accent sections */
+.grid-pattern-cross {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      var(--grid-color-secondary) 0,
+      var(--grid-color-secondary) 1px,
+      transparent 0,
+      transparent 50%
+    );
+  background-size: 20px 20px;
+}
+
+
+/* ================================================================
+   ANIMATIONS — keyframes
+   ================================================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden;  }
+}
+
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes sweep {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+@keyframes gridFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ================================================================
+   UTILITY CLASSES
+   ================================================================ */
+.animate-fade-in         { animation: fadeIn 2s ease-out forwards; }
+.animate-fade-in-delayed { animation: fadeIn 2s ease-out 1s forwards; }
+.animate-fade-out        { animation: fadeOut 1s ease-out 2.5s forwards; }
+.animate-scroll-line     { animation: scrollLine 2s ease-in-out infinite; }
+.animate-pulse-glow      { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+/* Shimmer skeleton loader */
+.shimmer-bar {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.06) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.8s ease-in-out infinite;
+}
+
+/* Display font shortcut */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+
+/* ================================================================
+   FLOATING FORM LABELS
+   ================================================================ */
+.floating-input:focus ~ .floating-label,
+.floating-input:not(:placeholder-shown) ~ .floating-label {
+  transform: translateY(-1.5rem) scale(0.85);
+  color: var(--text-secondary);
+}
+
+.floating-input {
+  border-bottom: 1px solid var(--border-dim);
+  transition: border-color 0.3s var(--ease-out-expo);
+  background: transparent;
+}
+
+.floating-input:focus {
+  border-bottom: 2px solid var(--molten-500);
+  outline: none;
+}
+
+
+/* ================================================================
+   DETAILS / ACCORDION
+   ================================================================ */
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] summary ~ * {
+  animation: sweep 0.4s var(--ease-out-quart);
+}
+details[open] summary .expand-icon {
+  transform: rotate(180deg);
 }

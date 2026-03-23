@@ -1,0 +1,172 @@
+/* ================================================================
+   SPC STEEL PIPE COMPANY — Design Tokens
+   Industrial Minimalism: Steel · Fire · Precision
+   ================================================================
+   All values are CSS custom properties available via var().
+   Tailwind utilities are mapped in globals.css via @theme.
+   ================================================================ */
+
+:root {
+
+  /* ── BRAND NAVY ─────────────────────────────────────────────
+     Anchor: #2A3E72. Deep, authoritative. Factory floor at midnight.
+     ─────────────────────────────────────────────────────────── */
+  --navy-950:  #040A16;   /* near-void, darkest hero bg tint     */
+  --navy-900:  #08112A;   /* deep vault navy                     */
+  --navy-800:  #101E42;   /* dark navy surface                   */
+  --navy-700:  #2A3E72;   /* ← BRAND ANCHOR                      */
+  --navy-600:  #3A5290;   /* mid navy, hover states              */
+  --navy-500:  #4E6EAD;   /* lighter navy, secondary CTAs        */
+  --navy-400:  #7090C8;   /* muted highlight                     */
+  --navy-300:  #9AB0DC;   /* pale navy, disabled states          */
+  --navy-200:  #C2D1EF;   /* very light navy tint                */
+  --navy-100:  #E4EBF7;   /* near-white navy wash                */
+
+  /* ── RAW STEEL ──────────────────────────────────────────────
+     Cool blue-gray. The factory floor. Structural, honest, hard.
+     ─────────────────────────────────────────────────────────── */
+  --steel-900: #0E161E;   /* darkest steel, almost black         */
+  --steel-800: #182532;   /* deep rolled-steel dark              */
+  --steel-700: #243646;   /* structural steel mid-dark           */
+  --steel-600: #344D62;   /* industrial gray-blue                */
+  --steel-500: #486278;   /* raw unfinished steel                */
+  --steel-400: #658098;   /* medium steel, text on dark          */
+  --steel-300: #8AA4BC;   /* light steel, muted text             */
+  --steel-200: #B4CCDA;   /* pale steel, borders on light        */
+  --steel-100: #D6E4EE;   /* silver steel sheen                  */
+  --steel-50:  #EBF2F7;   /* near-white cool tint                */
+
+  /* ── MOLTEN / WELDING ARC ───────────────────────────────────
+     Warm orange. The welding spark. Primary accent — must POP.
+     The only warm color on a cold factory floor.
+     ─────────────────────────────────────────────────────────── */
+  --molten-900: #5E1602;   /* char, almost black-red             */
+  --molten-800: #8C2406;   /* deep ember                         */
+  --molten-700: #B43410;   /* hot coal                           */
+  --molten-600: #D4461A;   /* deep welding arc                   */
+  --molten-500: #E85E22;   /* ← PRIMARY CTA ACCENT               */
+  --molten-400: #F27438;   /* bright welding glow                */
+  --molten-300: #F79A68;   /* warm highlight                     */
+  --molten-200: #FBC09A;   /* faded heat                         */
+  --molten-100: #FDE4D0;   /* pale ember wash                    */
+
+  /* ── COPPER / BRONZE ────────────────────────────────────────
+     Warm metallic. Pipe fittings. Technical drawings. Subtle luxury.
+     ─────────────────────────────────────────────────────────── */
+  --copper-900: #2E1406;   /* darkest bronze                     */
+  --copper-800: #522208;   /* deep copper shadow                 */
+  --copper-700: #7A3610;   /* raw copper ore                     */
+  --copper-600: #9C5018;   /* aged copper pipe                   */
+  --copper-500: #B86C28;   /* ← BRONZE ANCHOR                    */
+  --copper-400: #D08C42;   /* polished bronze                    */
+  --copper-300: #E4AE68;   /* bright bronze                      */
+  --copper-200: #F2CC98;   /* gold wash                          */
+  --copper-100: #FAE8CC;   /* pale bronze tint                   */
+
+  /* ── CONCRETE ───────────────────────────────────────────────
+     Industrial neutral. Poured floors, load-bearing walls.
+     Neither warm nor cool. Utterly honest.
+     ─────────────────────────────────────────────────────────── */
+  --concrete-950: #0A0A0C;  /* near black                        */
+  --concrete-900: #121214;  /* dark floor                        */
+  --concrete-800: #1C1C20;  /* poured concrete dark              */
+  --concrete-700: #282830;  /* raw concrete                      */
+  --concrete-600: #34343E;  /* mid concrete                      */
+  --concrete-500: #46464E;  /* industrial gray                   */
+  --concrete-400: #5E5E68;  /* worn concrete                     */
+  --concrete-300: #787884;  /* light concrete                    */
+  --concrete-200: #9898A6;  /* pale concrete                     */
+  --concrete-100: #BCBCC8;  /* silver-gray                       */
+  --concrete-50:  #DCDCE8;  /* off-white concrete wash           */
+
+  /* ── BACKGROUNDS ────────────────────────────────────────────
+     Layered dark backgrounds create depth. Light versions for
+     contrast sections. Never pure black, never pure white.
+     ─────────────────────────────────────────────────────────── */
+  --bg-void:         #050810;  /* ← HERO bg. Deepest dark.       */
+  --bg-deep:         #08101C;  /* very dark section              */
+  --bg-dark:         #0C1420;  /* standard dark section          */
+  --bg-navy:         #0F1A30;  /* navy-tinted dark section       */
+  --bg-mid:          #162038;  /* mid-dark, elevated cards       */
+  --bg-surface:      #1C2A48;  /* card/panel surface on dark     */
+  --bg-surface-alt:  #1E2E52;  /* alternate elevated surface     */
+  --bg-light:        #EDE9E0;  /* ← LIGHT SECTION bg. Warm.      */
+  --bg-pale:         #F5F2EC;  /* near-white, max lightness      */
+  --bg-steel-light:  #E2E8ED;  /* cool light, alternating        */
+
+  /* ── TEXT ───────────────────────────────────────────────────
+     On dark: warm whites (not pure). On light: deep navy-darks.
+     ─────────────────────────────────────────────────────────── */
+  --text-white:      #F4F0E8;  /* warm white — primary on dark   */
+  --text-primary:    #E2DDD4;  /* slightly dimmer primary        */
+  --text-secondary:  #8CACC6;  /* steel-toned secondary          */
+  --text-muted:      #546880;  /* muted — captions, metadata     */
+  --text-dark:       #0C1526;  /* primary text on light bg       */
+  --text-mid:        #2C3E56;  /* secondary text on light bg     */
+
+  /* ── BORDERS ────────────────────────────────────────────────
+     Subtle. Industry shows structure through form, not decoration.
+     ─────────────────────────────────────────────────────────── */
+  --border-faint:    rgba(255, 255, 255, 0.04);  /* barely there  */
+  --border-subtle:   rgba(255, 255, 255, 0.08);  /* light divider */
+  --border-dim:      rgba(255, 255, 255, 0.14);  /* visible edge  */
+  --border-bright:   rgba(255, 255, 255, 0.28);  /* clear border  */
+  --border-navy:     rgba(42,  62, 114,  0.50);  /* navy-tinted   */
+  --border-steel:    rgba(100, 128, 152, 0.28);  /* steel gray    */
+  --border-accent:   #E85E22;                    /* molten CTA    */
+  --border-copper:   rgba(184, 108,  40, 0.40);  /* bronze trim   */
+
+  /* ── STATUS ─────────────────────────────────────────────────
+     Desaturated. Industrial. Not candy-colored.
+     ─────────────────────────────────────────────────────────── */
+  --status-success:       #1E5C38;  /* muted green, operational  */
+  --status-success-light: #2E8C58;  /* lighter for badges        */
+  --status-warning:       #946018;  /* amber, alert              */
+  --status-warning-light: #C48828;  /* lighter amber             */
+  --status-error:         #9C2020;  /* deep red, fault           */
+  --status-error-light:   #C83838;  /* brighter error            */
+  --status-info:          #1E4C96;  /* informational blue        */
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────────
+     Three fonts. Each has one job.
+     ─────────────────────────────────────────────────────────── */
+  --font-display: "Barlow Condensed", sans-serif;  /* HEADINGS — bold, condensed, industrial */
+  --font-body:    "DM Sans",          sans-serif;  /* BODY — clean, legible, contemporary    */
+  --font-mono:    "JetBrains Mono",   monospace;   /* STATS/SPECS — technical precision      */
+
+  /* ── SHADOWS ────────────────────────────────────────────────  */
+  --shadow-xs:     0 1px 4px  rgba(0, 0, 0, 0.35);
+  --shadow-sm:     0 2px 8px  rgba(0, 0, 0, 0.45);
+  --shadow-md:     0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg:     0 20px 52px rgba(0, 0, 0, 0.65);
+  --shadow-deep:   0 40px 96px rgba(0, 0, 0, 0.80);
+  --shadow-navy:   0 8px 32px  rgba(42,  62, 114, 0.40);
+  --shadow-molten: 0 4px 24px  rgba(232, 94,  34,  0.42);
+  --shadow-copper: 0 4px 20px  rgba(184, 108,  40, 0.35);
+  --shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* ── EASING ─────────────────────────────────────────────────
+     Precise. Mechanical. Not bouncy or playful.
+     ─────────────────────────────────────────────────────────── */
+  --ease-out-expo:    cubic-bezier(0.16, 1,    0.30, 1);    /* fast out, long tail   */
+  --ease-out-quart:   cubic-bezier(0.25, 1,    0.50, 1);    /* smooth deceleration   */
+  --ease-industrial:  cubic-bezier(0.45, 0,    0.15, 1);    /* precise, mechanical   */
+  --ease-snap:        cubic-bezier(0.68, -0.2, 0.32, 1.2);  /* slight overshoot      */
+
+  /* ── BORDER RADIUS ──────────────────────────────────────────
+     Sharp. Industrial. Rounded corners are for apps, not factories.
+     ─────────────────────────────────────────────────────────── */
+  --radius-none: 0px;
+  --radius-xs:   1px;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   6px;
+
+  /* ── GRID ───────────────────────────────────────────────────
+     Technical drawing grid. Used in hero and section backgrounds.
+     ─────────────────────────────────────────────────────────── */
+  --grid-color-primary:   rgba(42, 62, 114, 0.18);  /* navy grid lines  */
+  --grid-color-secondary: rgba(42, 62, 114, 0.07);  /* sub-grid lines   */
+  --grid-size:   60px;
+  --grid-sub:    12px;
+}
