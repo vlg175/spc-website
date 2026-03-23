@@ -23,18 +23,25 @@ interface Partner {
   flag: string;    // country code for decoration
   role: string;
   accent: string;  // brand-approximate accent shown on hover
-  logo: string;    // path to SVG in /public/images/partners/
+  logo: string;    // path to image in /public/images/partners/
+  logoPad?: string; // extra CSS padding inside the logo container (tighten whitespace)
+  logoScale?: number; // CSS scale for logos with excess canvas whitespace
 }
+
+/* PNG/JPEG logos have white backgrounds — mix-blend-mode: multiply removes them */
+const hasBg = (logo: string) =>
+  logo.endsWith(".png") || logo.endsWith(".jpeg");
 
 const PARTNERS: Partner[] = [
   {
-    name: "ArcelorMittal",
-    short: "ArcelorMittal",
+    name: "Qarmet",
+    short: "Qarmet",
     country: "Kazakhstan",
     flag: "KZ",
     role: "Raw Material",
-    accent: "#1E4080",
-    logo: "/images/partners/arcelormittal.svg",
+    accent: "#0D3B6E",
+    logo: "/images/partners/logo_top_alt.png",
+    logoPad: "4px 0",
   },
   {
     name: "EVRAZ",
@@ -42,8 +49,9 @@ const PARTNERS: Partner[] = [
     country: "Russia",
     flag: "RU",
     role: "Raw Material",
-    accent: "#B8242A",
-    logo: "/images/partners/evraz.svg",
+    accent: "#E07020",
+    logo: "/images/partners/Evraz.svg.png",
+    logoPad: "6px 0",
   },
   {
     name: "HUAYE",
@@ -51,8 +59,9 @@ const PARTNERS: Partner[] = [
     country: "China",
     flag: "CN",
     role: "Technology",
-    accent: "#C8321C",
-    logo: "/images/partners/huaye.svg",
+    accent: "#1E3A7A",
+    logo: "/images/partners/huaye.png",
+    logoPad: "8px 0",
   },
   {
     name: "SAP",
@@ -62,6 +71,7 @@ const PARTNERS: Partner[] = [
     role: "Software / ERP",
     accent: "#0070F2",
     logo: "/images/partners/sap.svg",
+    logoPad: "4px 8px",
   },
   {
     name: "MMK",
@@ -70,7 +80,8 @@ const PARTNERS: Partner[] = [
     flag: "RU",
     role: "Raw Material",
     accent: "#1A4A9C",
-    logo: "/images/partners/mmk.svg",
+    logo: "/images/partners/logo-mmk.png",
+    logoPad: "8px 0",
   },
   {
     name: "TTZ",
@@ -79,7 +90,9 @@ const PARTNERS: Partner[] = [
     flag: "UZ",
     role: "Industry Partner",
     accent: "#2A3E72",
-    logo: "/images/partners/ttz.svg",
+    logo: "/images/partners/ttz.png",
+    logoPad: "4px 0",
+    logoScale: 2.7,
   },
 ];
 
@@ -133,7 +146,12 @@ function PartnerCard({ partner }: { partner: Partner }) {
       {/* Logo image */}
       <div
         className="relative flex items-center justify-center mb-3"
-        style={{ width: "100%", height: 48 }}
+        style={{
+          width: "100%",
+          height: 52,
+          padding: partner.logoPad ?? "0",
+          overflow: "hidden",
+        }}
       >
         <Image
           src={partner.logo}
@@ -142,8 +160,11 @@ function PartnerCard({ partner }: { partner: Partner }) {
           sizes="(max-width: 768px) 50vw, 16vw"
           style={{
             objectFit: "contain",
+            objectPosition: "center",
             filter: hovered ? "none" : "grayscale(100%)",
-            transition: "filter 0.3s ease",
+            transition: "filter 0.3s ease, transform 0.3s ease",
+            mixBlendMode: hasBg(partner.logo) ? "multiply" : "normal",
+            transform: partner.logoScale ? `scale(${partner.logoScale})` : undefined,
           }}
         />
       </div>
@@ -243,18 +264,22 @@ export default function Partners() {
       });
 
       /* ── Sub-headline fade ───────────────────────────────────── */
-      gsap.from(".partners-sub", {
-        opacity: 0,
-        y: 16,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section.querySelector(".partners-heading"),
-          start: "top 80%",
-          once: true,
-        },
-        delay: 0.4,
-      });
+      gsap.fromTo(
+        ".partners-sub",
+        { opacity: 0, y: 16 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          delay: 0.4,
+          scrollTrigger: {
+            trigger: section.querySelector(".partners-heading"),
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
     }, section);
 
     return () => ctx.revert();
