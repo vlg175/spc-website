@@ -109,7 +109,7 @@ export default function Contact() {
   const DETAILS = [
     { Icon: Phone, label: t("phone_label"), value: "+998 (55) 900-00-77", href: "tel:+998559000077" },
     { Icon: Mail, label: t("email_label"), value: "jv.steelpipe@gmail.com", href: "mailto:jv.steelpipe@gmail.com" },
-    { Icon: MapPin, label: t("address_label"), value: "SEZ Angren Promzona-3, Akhangaran, Tashkent Region, Uzbekistan", href: "https://maps.google.com/?q=Akhangaran+Uzbekistan" },
+    { Icon: MapPin, label: t("address_label"), value: t("address_value"), href: "https://maps.google.com/?q=Akhangaran+Uzbekistan" },
   ];
 
   const sectionRef      = useRef<HTMLElement>(null);

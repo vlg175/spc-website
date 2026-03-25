@@ -21,16 +21,16 @@
     "label": "About SPC",
     "heading1": "Built on steel.",
     "heading2": "Driven by standards.",
-    "story1": "In September 2018, reconstruction began in the Angren Free Economic Zone — a joint venture between Uzbek and Chinese partners with one goal: manufacture steel pipes meeting international standards on Uzbekistan's soil.",
-    "story2": "By December 2019, the first ERW production line was operational. Since then: continuous modernization, expanding capacity, refining processes year after year.",
-    "story3": "Today, 160+ local workers operate certified facilities. Partnerships with Qarmet, EVRAZ, HUAYE, and MMK strengthen the entire Uzbek metals industry. Every product is GOST-certified. Environmental responsibility is built in, not bolted on.",
+    "story1": "SPC is an Uzbek-Chinese joint venture based in the Angren Free Economic Zone. One goal from day one: manufacture steel pipes to international standards on Uzbekistan's soil.",
+    "story2": "The first ERW line launched in December 2019. Since then — three production lines, annual upgrades, and steadily growing capacity.",
+    "story3": "160+ specialists, certified production, partnerships with Qarmet, EVRAZ, HUAYE, and MMK. Every product is GOST-certified. Environmental responsibility is built into the process, not added for paperwork.",
     "sez": "SEZ Angren Free Economic Zone · Akhangaran, Tashkent Region",
     "motto": "\"We don't cut corners. We cut steel.\"",
     "stat_workers": "Local Workers",
     "stat_founded": "Founded",
     "stat_products": "Product Lines",
     "stat_pressure": "Test Pressure",
-    "stat_sublabel": "160+ local employees · 2 production lines · ERW straight-seam"
+    "stat_sublabel": "160+ local employees · 3 production lines · ERW straight-seam"
   },
   "process": {
     "label": "Production Process",
@@ -56,7 +56,7 @@
     "s4_tagline": "Every millimeter, accounted for.",
     "s5_title": "Testing & Certification",
     "s5_subtitle": "Finished pipe → verified, stamped, shipped",
-    "s5_copy": "Ultrasonic weld inspection. Hydraulic pressure testing at 20 MPa. Dimensional verification. Only then does it earn the GOST stamp and leave our facility.",
+    "s5_copy": "Ultrasonic weld inspection. Hydraulic pressure testing at 12 MPa. Dimensional verification. Only then does it earn the GOST stamp and leave our facility.",
     "s5_tagline": "Tested. Certified. Ready."
   },
   "products": {
@@ -67,16 +67,16 @@
     "certs_row": "Certified: GOST 10704 · GOST 10705 · GOST 3262 · GOST 8639 · GOST 8645 · ISO 559 · EN 10219 · Uzstandard Verified",
     "round_name": "Round Section",
     "round_tagline": "The backbone of infrastructure.",
-    "round_desc": "ERW straight-seam tubes for construction, infrastructure, water/gas systems, and industrial piping. Ø21.3–426mm, wall 1.0–12.7mm, lengths 6–12m.",
-    "round_specs": "Ø21.3–426mm · Wall 1.0–12.7mm",
+    "round_desc": "ERW straight-seam tubes for construction, infrastructure, water/gas systems, and industrial piping.",
+    "round_specs": "Ø21.3–219 mm · Wall 1.5–8 mm",
     "square_name": "Square Section",
     "square_tagline": "Structural strength, squared.",
     "square_desc": "Structural profiles for frameworks, equipment supports, and construction applications. Precise dimensions, consistent wall thickness.",
-    "square_specs": "Structural profiles",
-    "profile_name": "Profile / Rectangular",
+    "square_specs": "□ 15×15–180×180 mm · Wall 1.5–7 mm",
+    "profile_name": "Rectangular Section",
     "profile_tagline": "Custom geometry. Standard quality.",
-    "profile_desc": "Custom cross-sections for construction, bridges, automotive, and industrial applications. Same certified quality, flexible form factor.",
-    "profile_specs": "Rectangular profiles"
+    "profile_desc": "Rectangular profiles for construction, bridges, automotive, and industrial applications. Same certified quality, flexible form factor.",
+    "profile_specs": "▭ 30×20–200×160 mm · Wall 1.5–7 mm"
   },
   "quality": {
     "label": "Standards",
@@ -93,15 +93,19 @@
     "f2_detail": "Continuous Line · Annual Upgrades · 160+ Operators",
     "f3_title": "Certified Quality",
     "f3_tagline": "Tested. Stamped. Shipped.",
-    "f3_body": "Every batch certified under GOST 10704, GOST 10705, ISO 559, EN 10219, and Uzstandard. Hydraulic pressure tested at 20 MPa. No exceptions, no shortcuts.",
-    "f3_detail": "Hydraulic Test 20 MPa · GOST · ISO · EN"
+    "f3_body": "Every batch certified under GOST 10704, GOST 10705, ISO 559, EN 10219, and Uzstandard. Hydraulic pressure tested at 12 MPa. No exceptions, no shortcuts.",
+    "f3_detail": "Hydraulic Test 12 MPa · GOST · ISO · EN"
   },
   "partners": {
     "label": "Trusted Partners",
-    "heading1": "We supply to the best.",
-    "heading2_accent": "They come back.",
+    "heading1": "Backed by the world's best.",
+    "heading2_accent": "Quality starts at source.",
     "sub": "Backed by supply partnerships with the world's leading steel producers and technology companies — raw material quality is locked in before a single coil enters our line.",
-    "note": "Steel coil — Qarmet, KZ · EVRAZ, RU · MMK, RU · Technology — HUAYE, CN · ERP — SAP, DE · Industry — TTZ, UZ"
+    "note": "Steel coil — Qarmet, KZ · EVRAZ, RU · MMK, RU · Technology — HUAYE, CN · ERP — SAP, DE · Industry — TTZ, UZ",
+    "role_raw_material": "Raw Material",
+    "role_technology": "Technology",
+    "role_software_erp": "Software / ERP",
+    "role_industry_partner": "Industry Partner"
   },
   "contact": {
     "label": "Get in Touch",
@@ -117,6 +121,7 @@
     "field_phone": "Phone Number",
     "field_message": "Message",
     "submit": "Send Message",
+    "address_value": "SEZ Angren Promzona-3, Akhangaran, Tashkent Region, Uzbekistan",
     "disclaimer": "We respond within 1 business day · jv.steelpipe@gmail.com · ohangaronsteelpipe@gmail.com"
   },
   "footer": {

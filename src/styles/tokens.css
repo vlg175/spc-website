@@ -11,9 +11,9 @@
   /* ── BRAND NAVY ─────────────────────────────────────────────
      Anchor: #2A3E72. Deep, authoritative. Factory floor at midnight.
      ─────────────────────────────────────────────────────────── */
-  --navy-950:  #040A16;   /* near-void, darkest hero bg tint     */
-  --navy-900:  #08112A;   /* deep vault navy                     */
-  --navy-800:  #101E42;   /* dark navy surface                   */
+  --navy-950:  #050B1E;   /* near-void, darkest navy tint        */
+  --navy-900:  #0A1432;   /* deep vault navy                     */
+  --navy-800:  #122048;   /* dark navy surface                   */
   --navy-700:  #2A3E72;   /* ← BRAND ANCHOR                      */
   --navy-600:  #3A5290;   /* mid navy, hover states              */
   --navy-500:  #4E6EAD;   /* lighter navy, secondary CTAs        */
@@ -23,18 +23,19 @@
   --navy-100:  #E4EBF7;   /* near-white navy wash                */
 
   /* ── RAW STEEL ──────────────────────────────────────────────
-     Cool blue-gray. The factory floor. Structural, honest, hard.
+     Cool navy-steel. Factory floor under blue light.
+     Leans toward brand navy for palette coherence.
      ─────────────────────────────────────────────────────────── */
-  --steel-900: #0E161E;   /* darkest steel, almost black         */
-  --steel-800: #182532;   /* deep rolled-steel dark              */
-  --steel-700: #243646;   /* structural steel mid-dark           */
-  --steel-600: #344D62;   /* industrial gray-blue                */
-  --steel-500: #486278;   /* raw unfinished steel                */
-  --steel-400: #658098;   /* medium steel, text on dark          */
-  --steel-300: #8AA4BC;   /* light steel, muted text             */
-  --steel-200: #B4CCDA;   /* pale steel, borders on light        */
-  --steel-100: #D6E4EE;   /* silver steel sheen                  */
-  --steel-50:  #EBF2F7;   /* near-white cool tint                */
+  --steel-900: #0E1624;   /* darkest steel, navy-black           */
+  --steel-800: #1A2838;   /* deep rolled-steel dark              */
+  --steel-700: #26384C;   /* structural steel mid-dark           */
+  --steel-600: #365068;   /* industrial navy-steel               */
+  --steel-500: #4A6580;   /* raw unfinished steel                */
+  --steel-400: #687F9C;   /* medium steel, text on dark          */
+  --steel-300: #8DA6C0;   /* light steel, muted text             */
+  --steel-200: #B6CCDE;   /* pale steel, borders on light        */
+  --steel-100: #D6E4F0;   /* silver-blue steel sheen             */
+  --steel-50:  #EBF1F8;   /* near-white blue tint                */
 
   /* ── MOLTEN / WELDING ARC ───────────────────────────────────
      Warm orange. The welding spark. Primary accent — must POP.
@@ -64,45 +65,46 @@
   --copper-100: #FAE8CC;   /* pale bronze tint                   */
 
   /* ── CONCRETE ───────────────────────────────────────────────
-     Industrial neutral. Poured floors, load-bearing walls.
-     Neither warm nor cool. Utterly honest.
+     Industrial neutral with a navy undertone.
+     Poured floors under cold blue factory light.
      ─────────────────────────────────────────────────────────── */
-  --concrete-950: #0A0A0C;  /* near black                        */
-  --concrete-900: #121214;  /* dark floor                        */
-  --concrete-800: #1C1C20;  /* poured concrete dark              */
-  --concrete-700: #282830;  /* raw concrete                      */
-  --concrete-600: #34343E;  /* mid concrete                      */
-  --concrete-500: #46464E;  /* industrial gray                   */
-  --concrete-400: #5E5E68;  /* worn concrete                     */
-  --concrete-300: #787884;  /* light concrete                    */
-  --concrete-200: #9898A6;  /* pale concrete                     */
-  --concrete-100: #BCBCC8;  /* silver-gray                       */
-  --concrete-50:  #DCDCE8;  /* off-white concrete wash           */
+  --concrete-950: #0A0C12;  /* near black, blue-tinted           */
+  --concrete-900: #121418;  /* dark floor                        */
+  --concrete-800: #1C1E26;  /* poured concrete dark              */
+  --concrete-700: #282C36;  /* raw concrete                      */
+  --concrete-600: #343842;  /* mid concrete                      */
+  --concrete-500: #464A54;  /* industrial gray-blue              */
+  --concrete-400: #5C6270;  /* worn concrete                     */
+  --concrete-300: #767E8C;  /* light concrete                    */
+  --concrete-200: #969CA8;  /* pale concrete                     */
+  --concrete-100: #BABEC8;  /* silver-blue gray                  */
+  --concrete-50:  #DADEE8;  /* off-white navy wash               */
 
   /* ── BACKGROUNDS ────────────────────────────────────────────
      Layered dark backgrounds create depth. Light versions for
-     contrast sections. Never pure black, never pure white.
+     contrast sections. Navy-tinted throughout — logo coherence.
      ─────────────────────────────────────────────────────────── */
-  --bg-void:         #050810;  /* ← HERO bg. Deepest dark.       */
-  --bg-deep:         #08101C;  /* very dark section              */
-  --bg-dark:         #0C1420;  /* standard dark section          */
-  --bg-navy:         #0F1A30;  /* navy-tinted dark section       */
-  --bg-mid:          #162038;  /* mid-dark, elevated cards       */
-  --bg-surface:      #1C2A48;  /* card/panel surface on dark     */
-  --bg-surface-alt:  #1E2E52;  /* alternate elevated surface     */
-  --bg-light:        #EDE9E0;  /* ← LIGHT SECTION bg. Warm.      */
-  --bg-pale:         #F5F2EC;  /* near-white, max lightness      */
-  --bg-steel-light:  #E2E8ED;  /* cool light, alternating        */
+  --bg-void:         #060A1A;  /* ← HERO bg. Midnight navy.      */
+  --bg-deep:         #091226;  /* deep navy section              */
+  --bg-dark:         #0E182E;  /* standard dark navy section     */
+  --bg-navy:         #111E3A;  /* navy surface                   */
+  --bg-mid:          #182844;  /* mid-navy, elevated cards       */
+  --bg-surface:      #1E304E;  /* card/panel surface on dark     */
+  --bg-surface-alt:  #223658;  /* alternate elevated surface     */
+  --bg-light:        #E8EDF6;  /* ← LIGHT SECTION bg. Cool navy. */
+  --bg-pale:         #F0F4FA;  /* near-white, cool blue tint     */
+  --bg-steel-light:  #E0E7F2;  /* cool blue-steel alternating    */
 
   /* ── TEXT ───────────────────────────────────────────────────
-     On dark: warm whites (not pure). On light: deep navy-darks.
+     On dark: cool whites. On light: deep navy-darks.
+     Every tone carries the brand navy DNA.
      ─────────────────────────────────────────────────────────── */
-  --text-white:      #F4F0E8;  /* warm white — primary on dark   */
-  --text-primary:    #E2DDD4;  /* slightly dimmer primary        */
+  --text-white:      #EFF2F8;  /* cool white — primary on dark   */
+  --text-primary:    #DEE3EE;  /* slightly dimmer, cool          */
   --text-secondary:  #8CACC6;  /* steel-toned secondary          */
-  --text-muted:      #546880;  /* muted — captions, metadata     */
-  --text-dark:       #0C1526;  /* primary text on light bg       */
-  --text-mid:        #2C3E56;  /* secondary text on light bg     */
+  --text-muted:      #506888;  /* muted — captions, metadata     */
+  --text-dark:       #0C1830;  /* primary text on light bg       */
+  --text-mid:        #283E60;  /* secondary text on light bg     */
 
   /* ── BORDERS ────────────────────────────────────────────────
      Subtle. Industry shows structure through form, not decoration.

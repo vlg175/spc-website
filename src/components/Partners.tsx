@@ -21,12 +21,15 @@ interface Partner {
   short: string;   // display name in the card
   country: string;
   flag: string;    // country code for decoration
-  role: string;
+  roleKey: string; // translation key for the role label
   accent: string;  // brand-approximate accent shown on hover
   logo: string;    // path to image in /public/images/partners/
   logoPad?: string; // extra CSS padding inside the logo container (tighten whitespace)
   logoScale?: number; // CSS scale for logos with excess canvas whitespace
 }
+
+/* A resolved partner with a translated role string ready for rendering */
+interface PartnerResolved extends Partner { role: string; }
 
 /* PNG/JPEG logos have white backgrounds — mix-blend-mode: multiply removes them */
 const hasBg = (logo: string) =>
@@ -38,7 +41,7 @@ const PARTNERS: Partner[] = [
     short: "Qarmet",
     country: "Kazakhstan",
     flag: "KZ",
-    role: "Raw Material",
+    roleKey: "role_raw_material",
     accent: "#0D3B6E",
     logo: "/images/partners/logo_top_alt.png",
     logoPad: "4px 0",
@@ -48,7 +51,7 @@ const PARTNERS: Partner[] = [
     short: "EVRAZ",
     country: "Russia",
     flag: "RU",
-    role: "Raw Material",
+    roleKey: "role_raw_material",
     accent: "#E07020",
     logo: "/images/partners/Evraz.svg.png",
     logoPad: "6px 0",
@@ -58,7 +61,7 @@ const PARTNERS: Partner[] = [
     short: "HUAYE",
     country: "China",
     flag: "CN",
-    role: "Technology",
+    roleKey: "role_technology",
     accent: "#1E3A7A",
     logo: "/images/partners/huaye.png",
     logoPad: "8px 0",
@@ -68,7 +71,7 @@ const PARTNERS: Partner[] = [
     short: "SAP",
     country: "Germany",
     flag: "DE",
-    role: "Software / ERP",
+    roleKey: "role_software_erp",
     accent: "#0070F2",
     logo: "/images/partners/sap.svg",
     logoPad: "4px 8px",
@@ -78,7 +81,7 @@ const PARTNERS: Partner[] = [
     short: "MMK",
     country: "Russia",
     flag: "RU",
-    role: "Raw Material",
+    roleKey: "role_raw_material",
     accent: "#1A4A9C",
     logo: "/images/partners/logo-mmk.png",
     logoPad: "8px 0",
@@ -88,7 +91,7 @@ const PARTNERS: Partner[] = [
     short: "TTZ",
     country: "Uzbekistan",
     flag: "UZ",
-    role: "Industry Partner",
+    roleKey: "role_industry_partner",
     accent: "#2A3E72",
     logo: "/images/partners/ttz.png",
     logoPad: "4px 0",
@@ -96,11 +99,8 @@ const PARTNERS: Partner[] = [
   },
 ];
 
-/* Duplicate for seamless marquee loop */
-const MARQUEE_ITEMS = [...PARTNERS, ...PARTNERS];
-
 /* ── Partner Card ─────────────────────────────────────────────────────── */
-function PartnerCard({ partner }: { partner: Partner }) {
+function PartnerCard({ partner }: { partner: PartnerResolved }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -186,6 +186,11 @@ function PartnerCard({ partner }: { partner: Partner }) {
 /* ── Component ─────────────────────────────────────────────────────────── */
 export default function Partners() {
   const t = useTranslations("partners");
+
+  /* Resolve translation keys to localized role strings */
+  const partners: PartnerResolved[] = PARTNERS.map(p => ({ ...p, role: t(p.roleKey as Parameters<typeof t>[0]) }));
+  const marqueeItems = [...partners, ...partners];
+
   const sectionRef      = useRef<HTMLElement>(null);
   const headingLineRef  = useRef<HTMLDivElement>(null);
   const headingLabelRef = useRef<HTMLSpanElement>(null);
@@ -319,7 +324,7 @@ export default function Partners() {
           className="spc-marquee-track flex items-center"
           style={{ width: "max-content" }}
         >
-          {MARQUEE_ITEMS.map((p, i) => (
+          {marqueeItems.map((p, i) => (
             <div
               key={i}
               className="flex items-center gap-3 px-8 py-3 flex-shrink-0"
@@ -409,7 +414,7 @@ export default function Partners() {
 
         {/* ── Partner grid ─────────────────────────────────────── */}
         <div className="partners-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {PARTNERS.map((partner, i) => (
+          {partners.map((partner, i) => (
             <PartnerCard key={i} partner={partner} />
           ))}
         </div>

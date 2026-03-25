@@ -200,9 +200,8 @@ export default function Hero() {
 
         {/* ── Molten glow — very subtle warm accent at bottom ──────────── */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none w-full max-w-[800px]"
           style={{
-            width: "800px",
             height: "200px",
             background:
               "radial-gradient(ellipse at center bottom, rgba(232,94,34,0.065) 0%, transparent 70%)",

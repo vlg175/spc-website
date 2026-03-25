@@ -216,7 +216,7 @@ export default function Quality() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 lg:py-36">
 
         {/* ── Section heading ────────────────────────────────────── */}
         <header className="quality-heading mb-12 md:mb-16 lg:mb-20">
@@ -249,7 +249,7 @@ export default function Quality() {
             ref={headingTitleRef}
             className="font-display font-bold uppercase leading-[0.92] tracking-tight"
             style={{
-              fontSize: "clamp(2.4rem, 5.5vw, 5rem)",
+              fontSize: "clamp(1.7rem, 5vw, 5rem)",
               color: "var(--text-white)",
               clipPath: "inset(0 100% 0 0)",
             }}
@@ -264,7 +264,7 @@ export default function Quality() {
 
         {/* ── Three feature blocks ──────────────────────────────── */}
         <div
-          className="quality-grid grid grid-cols-1 md:grid-cols-3 gap-px"
+          className="quality-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px"
           style={{ background: "var(--border-subtle)" }}
         >
           {FEATURES.map((feat, i) => {

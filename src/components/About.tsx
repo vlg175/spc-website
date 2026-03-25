@@ -36,7 +36,7 @@ export default function About() {
     { end: 160,  start: 0,    suffix: "+",    duration: 2.0, label: t("stat_workers")  },
     { end: 2018, start: 2013, suffix: "",     duration: 1.6, label: t("stat_founded")  },
     { end: 6,    start: 0,    suffix: "+",    duration: 1.4, label: t("stat_products") },
-    { end: 20,   start: 0,    suffix: " MPa", duration: 1.4, label: t("stat_pressure") },
+    { end: 12,   start: 0,    suffix: " MPa", duration: 1.4, label: t("stat_pressure") },
   ];
   const sectionRef = useRef<HTMLElement>(null);
   const lineRef    = useRef<HTMLDivElement>(null);
@@ -162,7 +162,7 @@ export default function About() {
         </svg>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 lg:py-36">
 
         {/* ══ Section heading ══════════════════════════════════════════════ */}
         <header className="about-heading mb-10 md:mb-16 lg:mb-24">
@@ -198,7 +198,7 @@ export default function About() {
             ref={titleRef}
             className="font-display font-bold uppercase leading-[0.92] tracking-tight"
             style={{
-              fontSize: "clamp(2.6rem, 6vw, 5.25rem)",
+              fontSize: "clamp(1.8rem, 5.5vw, 5.25rem)",
               color: "var(--text-dark)",
               clipPath: "inset(0 100% 0 0)",
             }}
@@ -213,24 +213,37 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-16 xl:gap-20 items-start">
 
           {/* ── Left: company story (3/5 = 60%) ──────────────────────── */}
-          <div ref={storyRef} className="md:col-span-1 lg:col-span-3 space-y-5">
+          <div ref={storyRef} className="md:col-span-1 lg:col-span-3">
 
-            {STORY.map((para, i) => (
-              <p
-                key={i}
-                className={`about-para leading-relaxed ${
-                  i === 0
-                    ? "text-[1.08rem] font-medium"
-                    : "text-[0.96rem]"
-                }`}
-                style={{ color: "var(--text-mid)" }}
-              >
-                {para.trim()}
-              </p>
-            ))}
+            {/* Lead paragraph — larger, bolder, sets the tone */}
+            <p
+              className="about-para text-lg md:text-xl font-medium leading-[1.7] mb-6"
+              style={{ color: "var(--text-dark)" }}
+            >
+              {STORY[0].trim()}
+            </p>
+
+            {/* Divider */}
+            <div
+              className="about-para w-12 h-[2px] mb-6"
+              style={{ background: "var(--molten-500)" }}
+            />
+
+            {/* Supporting paragraphs — same size, tighter */}
+            <div className="space-y-4 mb-8">
+              {STORY.slice(1).map((para, i) => (
+                <p
+                  key={i}
+                  className="about-para text-[0.95rem] leading-[1.75]"
+                  style={{ color: "var(--text-mid)" }}
+                >
+                  {para.trim()}
+                </p>
+              ))}
+            </div>
 
             {/* Certification tags */}
-            <div className="about-para flex flex-wrap gap-2 pt-3">
+            <div className="about-para flex flex-wrap gap-2 mb-4">
               {CERTS.map((cert) => (
                 <span
                   key={cert}
@@ -247,9 +260,7 @@ export default function About() {
             </div>
 
             {/* SEZ badge */}
-            <div
-              className="about-para inline-flex items-center gap-2 mt-2"
-            >
+            <div className="about-para inline-flex items-center gap-2">
               <div
                 className="w-1.5 h-1.5 rotate-45 flex-shrink-0"
                 style={{ background: "var(--molten-500)" }}
@@ -272,7 +283,7 @@ export default function About() {
               {STATS.map((stat, i) => (
                 <div
                   key={i}
-                  className="about-stat-card flex flex-col gap-2 p-4 md:p-5 lg:p-6"
+                  className="about-stat-card flex flex-col gap-1.5 sm:gap-2 p-3 sm:p-4 md:p-5 lg:p-6"
                   style={{
                     background: "rgba(255,255,255,0.62)",
                     borderTop: "2px solid var(--molten-500)",
@@ -284,13 +295,13 @@ export default function About() {
                     start={stat.start}
                     suffix={stat.suffix}
                     duration={stat.duration}
-                    className="text-[1.8rem] md:text-[2rem] lg:text-[2.4rem] xl:text-[2.8rem] font-bold"
+                    className="text-[1.5rem] sm:text-[1.8rem] md:text-[2rem] lg:text-[2.4rem] xl:text-[2.8rem] font-bold"
                     style={{ color: "var(--navy-700)" }}
                   />
 
                   {/* Label */}
                   <p
-                    className="font-mono text-[0.6rem] uppercase tracking-[0.22em] leading-tight"
+                    className="font-mono text-[0.52rem] sm:text-[0.6rem] uppercase tracking-[0.18em] sm:tracking-[0.22em] leading-tight"
                     style={{ color: "var(--text-muted)" }}
                   >
                     {stat.label}

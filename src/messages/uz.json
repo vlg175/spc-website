@@ -21,16 +21,16 @@
     "label": "SPC haqida",
     "heading1": "Po'lat ustiga qurilgan.",
     "heading2": "Standartlar bilan yuradi.",
-    "story1": "2018-yil sentyabr oyida Angren Erkin Iqtisodiy Zonasida qayta qurish ishlari boshlandi — o'zbek va xitoy hamkorlari o'rtasidagi qo'shma korxona bitta maqsad bilan tashkil etildi: O'zbekiston hududida xalqaro standartlarga javob beradigan po'lat quvurlar ishlab chiqarish.",
-    "story2": "2019-yil dekabr oyiga qadar birinchi ERW ishlab chiqarish liniyasi ishga tushirildi. O'shandan beri — uzluksiz modernizatsiya, quvvatni kengaytirish, jarayonlarni har yili takomillashtirish.",
-    "story3": "Bugun 160 dan ortiq mahalliy mutaxassis sertifikatlangan zavodlarda ishlamoqda. Qarmet, EVRAZ, HUAYE va MMK bilan hamkorlik butun O'zbek metallurgiya sanoatini mustahkamlaydi. Har bir mahsulot GOST sertifikatiga ega. Atrof-muhitga mas'uliyat ishlab chiqarish jarayoniga singdirilgan, keyinchalik qo'shilmagan.",
+    "story1": "SPC — Angren SEZda joylashgan o'zbek-xitoy qo'shma korxonasi. Birinchi kundan maqsad: O'zbekiston hududida xalqaro standartlarga mos po'lat quvurlar ishlab chiqarish.",
+    "story2": "Birinchi ERW liniyasi 2019-yil dekabr oyida ishga tushirildi. O'shandan beri — uchta ishlab chiqarish liniyasi, har yili modernizatsiya va quvvatning uzluksiz o'sishi.",
+    "story3": "160+ mutaxassis, sertifikatlangan ishlab chiqarish, Qarmet, EVRAZ, HUAYE va MMK bilan hamkorlik. Barcha mahsulotlar GOST sertifikatiga ega. Ekologik mas'uliyat jarayonga singdirilgan, hisobot uchun qo'shilmagan.",
     "sez": "Angren SEZ · Ohangaron tumani, Toshkent viloyati",
     "motto": "\"Biz burchaklarni qirqmaymiz. Biz po'latni qirqamiz.\"",
     "stat_workers": "Mahalliy xodimlar",
     "stat_founded": "Asos solingan yil",
     "stat_products": "Mahsulot liniyalari",
     "stat_pressure": "Sinov bosimi",
-    "stat_sublabel": "160+ mahalliy xodim · 2 ishlab chiqarish liniyasi · ERW to'g'ri tikuvli"
+    "stat_sublabel": "160+ mahalliy xodim · 3 ishlab chiqarish liniyasi · ERW to'g'ri tikuvli"
   },
   "process": {
     "label": "Ishlab chiqarish jarayoni",
@@ -56,7 +56,7 @@
     "s4_tagline": "Har bir millimetr hisobda.",
     "s5_title": "Sinov va sertifikatlash",
     "s5_subtitle": "Tayyor quvur → tekshirilgan, tamg'alangan, jo'natilgan",
-    "s5_copy": "Ultratovushli chok tekshiruvi. 20 MPa bosimda gidravlik sinov. Geometrik parametrlarni nazorat qilish. Faqat shundan so'ng quvur GOST tamg'asini oladi va zavodimizdan chiqadi.",
+    "s5_copy": "Ultratovushli chok tekshiruvi. 12 MPa bosimda gidravlik sinov. Geometrik parametrlarni nazorat qilish. Faqat shundan so'ng quvur GOST tamg'asini oladi va zavodimizdan chiqadi.",
     "s5_tagline": "Sinaldi. Sertifikatlandi. Tayyor."
   },
   "products": {
@@ -67,16 +67,16 @@
     "certs_row": "Sertifikatlangan: GOST 10704 · GOST 10705 · GOST 3262 · GOST 8639 · GOST 8645 · ISO 559 · EN 10219 · Uzstandard",
     "round_name": "Dumaloq kesim",
     "round_tagline": "Infratuzilmaning asosi.",
-    "round_desc": "Qurilish, infratuzilma, suv/gaz tizimlari va sanoat quvur o'tkazgichlari uchun ERW to'g'ri chokli quvurlar. Ø21,3–426 mm, devor qalinligi 1,0–12,7 mm, uzunlik 6–12 m.",
-    "round_specs": "Ø21,3–426 mm · Devor 1,0–12,7 mm",
+    "round_desc": "Qurilish, infratuzilma, suv/gaz tizimlari va sanoat quvur o'tkazgichlari uchun ERW to'g'ri chokli quvurlar.",
+    "round_specs": "Ø21,3–219 mm · Devor 1,5–8 mm",
     "square_name": "Kvadrat kesim",
     "square_tagline": "Konstruktiv mustahkamlik, kvadrat shaklda.",
     "square_desc": "Ramkali konstruktsiyalar, uskunalar uchun tayanch va qurilish ilovalari uchun konstruktiv profillar. Aniq o'lchamlar, bir xil devor qalinligi.",
-    "square_specs": "Konstruktiv profillar",
-    "profile_name": "Profilli / to'rtburchak kesim",
+    "square_specs": "□ 15×15–180×180 mm · Devor 1,5–7 mm",
+    "profile_name": "To'rtburchak kesim",
     "profile_tagline": "Maxsus geometriya. Standart sifat.",
-    "profile_desc": "Qurilish, ko'priklar, avtomobil sanoati va sanoat ilovalari uchun ixtiyoriy kesimli profillar. Xuddi shu sertifikatlangan sifat, moslashuvchan shakl.",
-    "profile_specs": "To'rtburchak profillar"
+    "profile_desc": "Qurilish, ko'priklar, avtomobil sanoati va sanoat ilovalari uchun to'rtburchak profillar. Xuddi shu sertifikatlangan sifat, moslashuvchan shakl.",
+    "profile_specs": "▭ 30×20–200×160 mm · Devor 1,5–7 mm"
   },
   "quality": {
     "label": "Standartlar",
@@ -93,15 +93,19 @@
     "f2_detail": "Uzluksiz liniya · Yillik modernizatsiya · 160+ operator",
     "f3_title": "Sertifikatlangan sifat",
     "f3_tagline": "Sinaldi. Tamg'alandi. Jo'natildi.",
-    "f3_body": "Har bir partiya GOST 10704, GOST 10705, ISO 559, EN 10219 va Uzstandard bo'yicha sertifikatlangan. 20 MPa bosimda gidravlik sinov. Istisnosiz, qisqartmasiz.",
-    "f3_detail": "Gidravlik sinov 20 MPa · GOST · ISO · EN"
+    "f3_body": "Har bir partiya GOST 10704, GOST 10705, ISO 559, EN 10219 va Uzstandard bo'yicha sertifikatlangan. 12 MPa bosimda gidravlik sinov. Istisnosiz, qisqartmasiz.",
+    "f3_detail": "Gidravlik sinov 12 MPa · GOST · ISO · EN"
   },
   "partners": {
     "label": "Ishonchli hamkorlar",
-    "heading1": "Biz eng yaxshilarga yetkazib beramiz.",
-    "heading2_accent": "Ular qaytib keladi.",
+    "heading1": "Dunyoning eng yaxshilari biz bilan.",
+    "heading2_accent": "Sifat manbadan boshlanadi.",
     "sub": "Dunyoning yetakchi po'lat ishlab chiqaruvchilari va texnologiya kompaniyalari bilan hamkorlik shartnomalarimiz xom ashyo sifatini liniyamizga birinchi rulon kirishidan oldin kafolatlaydi.",
-    "note": "Rulon — Qarmet, KZ · EVRAZ, RU · MMK, RU · Texnologiya — HUAYE, Xitoy · ERP — SAP, Germaniya · Sanoat — TTZ, UZ"
+    "note": "Rulon — Qarmet, KZ · EVRAZ, RU · MMK, RU · Texnologiya — HUAYE, Xitoy · ERP — SAP, Germaniya · Sanoat — TTZ, UZ",
+    "role_raw_material": "Xom ashyo",
+    "role_technology": "Texnologiya",
+    "role_software_erp": "Dasturiy ta'minot / ERP",
+    "role_industry_partner": "Sanoat hamkori"
   },
   "contact": {
     "label": "Bog'laning",
@@ -117,6 +121,7 @@
     "field_phone": "Telefon raqami",
     "field_message": "Xabar",
     "submit": "Xabar yuborish",
+    "address_value": "Angren SEZ Sanoat Zonasi-3, Ohangaron, Toshkent viloyati, O'zbekiston",
     "disclaimer": "1 ish kuni ichida javob beramiz · jv.steelpipe@gmail.com · ohangaronsteelpipe@gmail.com"
   },
   "footer": {

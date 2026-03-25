@@ -136,7 +136,7 @@ export default function Products() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12 xl:px-20 py-20 md:py-24 lg:py-36">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-20 py-16 sm:py-20 md:py-24 lg:py-36">
         {/* ── Section heading ──────────────────────────────────────── */}
         <header className="products-heading mb-12 md:mb-16 lg:mb-20">
           <div className="flex items-center gap-4 mb-6">
@@ -158,7 +158,7 @@ export default function Products() {
             ref={headingTitleRef}
             className="font-display font-bold uppercase leading-[0.92] tracking-tight"
             style={{
-              fontSize: "clamp(2.4rem, 5.5vw, 5rem)",
+              fontSize: "clamp(1.8rem, 5vw, 5rem)",
               color: "var(--text-dark)",
               clipPath: "inset(0 100% 0 0)",
             }}
@@ -174,7 +174,7 @@ export default function Products() {
           {PRODUCTS.map((product, i) => (
             <motion.div
               key={i}
-              className="product-card group relative overflow-hidden"
+              className="product-card group relative overflow-hidden flex flex-col"
               style={{
                 background: "rgba(255,255,255,0.72)",
                 border: "1px solid rgba(100,128,152,0.18)",
@@ -214,68 +214,74 @@ export default function Products() {
               </div>
 
               {/* Content */}
-              <div className="p-6 lg:p-7">
-                <h3
-                  className="font-display font-bold uppercase text-xl lg:text-2xl mb-1"
-                  style={{ color: "var(--navy-700)" }}
-                >
-                  {product.name}
-                </h3>
+              <div className="p-6 lg:p-7 flex flex-col flex-1">
+                {/* Upper content — grows to fill available space */}
+                <div className="flex-1">
+                  <h3
+                    className="font-display font-bold uppercase text-xl lg:text-2xl min-h-[2.4em] mb-1"
+                    style={{ color: "var(--navy-700)" }}
+                  >
+                    {product.name}
+                  </h3>
 
-                <p
-                  className="font-mono text-[0.65rem] tracking-wider uppercase mb-4"
-                  style={{ color: "var(--molten-600)" }}
-                >
-                  {product.tagline}
-                </p>
+                  <p
+                    className="font-mono text-[0.65rem] tracking-wider uppercase min-h-[2.2em] mb-4"
+                    style={{ color: "var(--molten-600)" }}
+                  >
+                    {product.tagline}
+                  </p>
 
-                <p className="text-[0.88rem] leading-relaxed mb-5" style={{ color: "var(--text-mid)" }}>
-                  {product.description}
-                </p>
-
-                {/* Specs */}
-                <p
-                  className="font-mono text-[0.62rem] tracking-wider uppercase mb-4"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {product.specs}
-                </p>
-
-                {/* GOST badges */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {product.gosts.map((gost) => (
-                    <span
-                      key={gost}
-                      className="font-mono text-[0.56rem] px-2 py-0.5 tracking-wider uppercase"
-                      style={{
-                        color: "var(--navy-600)",
-                        border: "1px solid rgba(42,62,114,0.22)",
-                        background: "rgba(42,62,114,0.05)",
-                      }}
-                    >
-                      {gost}
-                    </span>
-                  ))}
+                  <p className="text-[0.88rem] leading-relaxed" style={{ color: "var(--text-mid)" }}>
+                    {product.description}
+                  </p>
                 </div>
 
-                {/* Request specs via email */}
-                <a
-                  href={product.mailto}
-                  className="inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase py-2.5 px-4 transition-colors duration-200"
-                  style={{
-                    color: "var(--text-white)",
-                    background: "var(--molten-500)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "var(--molten-600)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = "var(--molten-500)";
-                  }}
-                >
-                  <Mail size={14} strokeWidth={2} />
-                  {t("download")}
-                </a>
+                {/* Bottom content — aligned across all cards */}
+                <div className="mt-6">
+                  {/* Specs */}
+                  <p
+                    className="font-mono text-[0.62rem] tracking-wider uppercase mb-4"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {product.specs}
+                  </p>
+
+                  {/* GOST badges */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {product.gosts.map((gost) => (
+                      <span
+                        key={gost}
+                        className="font-mono text-[0.56rem] px-2 py-0.5 tracking-wider uppercase"
+                        style={{
+                          color: "var(--navy-600)",
+                          border: "1px solid rgba(42,62,114,0.22)",
+                          background: "rgba(42,62,114,0.05)",
+                        }}
+                      >
+                        {gost}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Request specs via email */}
+                  <a
+                    href={product.mailto}
+                    className="inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase py-2.5 px-4 transition-colors duration-200"
+                    style={{
+                      color: "var(--text-white)",
+                      background: "var(--molten-500)",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "var(--molten-600)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "var(--molten-500)";
+                    }}
+                  >
+                    <Mail size={14} strokeWidth={2} />
+                    {t("download")}
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}

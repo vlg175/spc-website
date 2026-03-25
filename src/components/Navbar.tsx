@@ -243,7 +243,7 @@ export default function Navbar() {
       {/* ── Mobile drawer — slides from right ──────────────────── */}
       <aside
         className={[
-          "fixed top-0 right-0 h-full w-72 z-50",
+          "fixed top-0 right-0 h-full w-[280px] sm:w-72 z-50",
           "flex flex-col",
           "bg-bg-dark border-l border-border-subtle",
           "transition-transform duration-300",
