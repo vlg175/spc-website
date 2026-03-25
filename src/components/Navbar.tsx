@@ -252,6 +252,7 @@ export default function Navbar() {
         ].join(" ")}
         aria-label="Mobile navigation"
         aria-hidden={!drawerOpen}
+        inert={!drawerOpen ? true : undefined}
       >
         {/* Drawer top bar */}
         <div className="flex items-center justify-between px-6 h-16 border-b border-border-subtle flex-shrink-0">

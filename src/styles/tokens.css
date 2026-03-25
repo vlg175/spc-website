@@ -102,7 +102,7 @@
   --text-white:      #EFF2F8;  /* cool white — primary on dark   */
   --text-primary:    #DEE3EE;  /* slightly dimmer, cool          */
   --text-secondary:  #8CACC6;  /* steel-toned secondary          */
-  --text-muted:      #506888;  /* muted — captions, metadata     */
+  --text-muted:      #6B87A5;  /* muted — captions, metadata (≥4.5:1 vs bg-dark) */
   --text-dark:       #0C1830;  /* primary text on light bg       */
   --text-mid:        #283E60;  /* secondary text on light bg     */
 

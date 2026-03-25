@@ -332,7 +332,7 @@ export default function Partners() {
             >
               <span
                 className="font-mono text-[0.52rem] tracking-[0.22em] uppercase"
-                style={{ color: "var(--text-muted)" }}
+                style={{ color: "var(--text-secondary)" }}
               >
                 {p.flag}
               </span>
@@ -344,7 +344,7 @@ export default function Partners() {
               </span>
               <span
                 className="font-mono text-[0.46rem] tracking-[0.2em] uppercase"
-                style={{ color: "var(--text-muted)" }}
+                style={{ color: "var(--text-secondary)" }}
               >
                 {p.role}
               </span>

@@ -364,7 +364,7 @@ export default function Hero() {
                 el.style.background  = "var(--molten-500)";
                 el.style.boxShadow   = "none";
               }}
-              aria-label="View our products"
+              /* a11y: no aria-label needed — visible text is the accessible name */
             >
               {t("cta_primary")}
               {/* Arrow → */}
@@ -406,7 +406,7 @@ export default function Hero() {
                 el.style.borderColor = "var(--border-dim)";
                 el.style.background  = "transparent";
               }}
-              aria-label="Contact us"
+              /* a11y: no aria-label needed — visible text is the accessible name */
             >
               {t("cta_secondary")}
             </button>
