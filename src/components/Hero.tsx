@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { smoothScrollTo } from "@/components/LenisProvider";
+import PipeErrorBoundary from "@/components/three/PipeErrorBoundary";
+
+/* Code-split Three.js — only loads on client, reduces initial bundle */
+const PipeScene = dynamic(() => import("@/components/three/PipeScene"), {
+  ssr: false,
+});
 
 /* ─────────────────────────────────────────────────────────────────────────
    HERO — SPC Steel Pipe Company
@@ -23,6 +31,16 @@ export default function Hero() {
   const subtitleRef     = useRef<HTMLParagraphElement>(null);
   const ctasRef         = useRef<HTMLDivElement>(null);
   const scrollRef       = useRef<HTMLDivElement>(null);
+
+  /* ── Only load Three.js on lg+ screens (saves ~200KB on mobile) ──── */
+  const [isLg, setIsLg] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    setIsLg(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsLg(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   /* ── Mouse parallax on grid ───────────────────────────────────────────── */
   useEffect(() => {
@@ -116,8 +134,7 @@ export default function Hero() {
   }, []);
 
   /* ── Helpers ──────────────────────────────────────────────────────────── */
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (id: string) => smoothScrollTo(id);
 
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
@@ -198,14 +215,33 @@ export default function Hero() {
           aria-hidden="true"
         />
 
+        {/* ── 3D Pipe cross-section — right side, behind text ──────────── */}
+        {isLg && (
+          <div
+            className="absolute pointer-events-none"
+            style={{
+              top: "5%",
+              right: "-8%",
+              width: "60%",
+              height: "90%",
+              opacity: 0.85,
+            }}
+            aria-hidden="true"
+          >
+            <PipeErrorBoundary>
+              <PipeScene />
+            </PipeErrorBoundary>
+          </div>
+        )}
+
         {/* ── Molten glow — very subtle warm accent at bottom ──────────── */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none w-full max-w-[800px]"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none w-full max-w-[900px]"
           style={{
-            height: "200px",
+            height: "260px",
             background:
-              "radial-gradient(ellipse at center bottom, rgba(232,94,34,0.065) 0%, transparent 70%)",
-            filter: "blur(35px)",
+              "radial-gradient(ellipse at center bottom, rgba(232,94,34,0.12) 0%, rgba(255,107,53,0.04) 40%, transparent 75%)",
+            filter: "blur(40px)",
           }}
           aria-hidden="true"
         />
@@ -276,7 +312,8 @@ export default function Hero() {
               ref={line2Ref}
               style={{ clipPath: "inset(0 100% 0 0)" }}
             >
-              <h1
+              <p
+                role="doc-subtitle"
                 className="font-display font-extrabold uppercase leading-[0.88] text-text-white"
                 style={{
                   fontSize: "clamp(50px, 9.5vw, 124px)",
@@ -285,7 +322,7 @@ export default function Hero() {
               >
                 {t("headline2")}{" "}
                 <span style={{ color: "var(--molten-500)" }}>{t("accent")}</span>
-              </h1>
+              </p>
             </div>
           </div>
 

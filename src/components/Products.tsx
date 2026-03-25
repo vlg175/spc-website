@@ -188,15 +188,13 @@ export default function Products() {
               {/* Top accent */}
               <div className="h-[2px]" style={{ background: "var(--molten-500)" }} />
 
-              {/* Icon area */}
+              {/* Icon area — zoom on card hover via group-hover */}
               <div
                 className="flex items-center justify-center py-10 relative overflow-hidden"
                 style={{ background: "var(--bg-navy)" }}
               >
                 <motion.div
-                  className="relative z-10"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.3 }}
+                  className="relative z-10 transition-transform duration-300 ease-out group-hover:scale-110"
                 >
                   <product.Icon
                     size={56}
@@ -204,9 +202,9 @@ export default function Products() {
                     style={{ color: "var(--steel-300)" }}
                   />
                 </motion.div>
-                {/* Subtle glow behind icon */}
+                {/* Subtle glow behind icon — scales up on hover too */}
                 <div
-                  className="absolute inset-0 pointer-events-none"
+                  className="absolute inset-0 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105"
                   style={{
                     background: "radial-gradient(circle at 50% 50%, rgba(42,62,114,0.25), transparent 70%)",
                   }}

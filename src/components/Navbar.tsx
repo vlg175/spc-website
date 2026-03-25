@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
+import { smoothScrollTo, smoothScrollToTop } from "@/components/LenisProvider";
 
 /* ── Locale config ──────────────────────────────────────────── */
 const LOCALES = [
@@ -85,15 +86,14 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [drawerOpen]);
 
-  /* ── Smooth-scroll to section ────────────────────────────── */
+  /* ── Smooth-scroll to section (via Lenis) ────────────────── */
   const scrollTo = useCallback((id: string) => {
     setDrawerOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    smoothScrollTo(id);
   }, []);
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    smoothScrollToTop();
   }, []);
 
   /* ── Locale switcher ─────────────────────────────────────── */

@@ -9,6 +9,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp } from "lucide-react";
+import { smoothScrollToTop } from "@/components/LenisProvider";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -29,7 +30,7 @@ export default function BackToTop() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 12 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => smoothScrollToTop()}
           aria-label="Back to top"
           className="fixed z-50 flex items-center justify-center"
           style={{

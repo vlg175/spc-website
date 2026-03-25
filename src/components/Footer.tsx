@@ -8,9 +8,10 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { smoothScrollTo } from "@/components/LenisProvider";
 
 function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  smoothScrollTo(id);
 }
 
 /* ── Component ─────────────────────────────────────────────────────────── */

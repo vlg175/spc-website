@@ -67,6 +67,8 @@ function Field({ label, name, type = "text", rows, focused, setFocused, register
     }),
   });
 
+  const errorId = `${name}-error`;
+
   return (
     <div className="contact-field">
       <label
@@ -82,6 +84,8 @@ function Field({ label, name, type = "text", rows, focused, setFocused, register
           id={name}
           rows={rows}
           style={sharedStyle}
+          aria-invalid={hasError || undefined}
+          aria-describedby={hasError ? errorId : undefined}
           onFocus={() => setFocused(name)}
           {...fieldProps}
           onBlur={(e: React.FocusEvent) => { setFocused(null); fieldProps.onBlur(e); }}
@@ -92,11 +96,19 @@ function Field({ label, name, type = "text", rows, focused, setFocused, register
           id={name}
           type={type}
           style={sharedStyle}
+          aria-invalid={hasError || undefined}
+          aria-describedby={hasError ? errorId : undefined}
           onFocus={() => setFocused(name)}
           {...fieldProps}
           onBlur={(e: React.FocusEvent) => { setFocused(null); fieldProps.onBlur(e); }}
           placeholder=""
         />
+      )}
+
+      {hasError && (
+        <p id={errorId} role="alert" className="mt-1 font-mono text-[0.56rem] tracking-wider" style={{ color: "var(--molten-500)" }}>
+          {error}
+        </p>
       )}
     </div>
   );
