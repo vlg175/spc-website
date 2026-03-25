@@ -27,66 +27,141 @@ interface Step {
   glowColor: string;
 }
 
-/* ── Static step icon (no draw-in class, for mobile/tablet cards) ─────── */
+/* ── Animated step icon for mobile/tablet — descriptive micro-illustrations ── */
 function StepIconStatic({ step, className }: { step: number; className?: string }) {
   const cn = className ?? "w-12 h-12";
-  const props = {
-    viewBox: "0 0 64 64",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.4,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    className: cn,
-  };
 
   switch (step) {
+    /* ─── Step 1: Steel Preparation — coil unrolling to flat strip ─── */
     case 1:
       return (
-        <svg {...props}>
-          <path d="M16 44 C16 28, 28 16, 44 16 C52 16, 52 24, 44 24 C36 24, 36 32, 44 32 C48 32, 48 36, 44 36" />
-          <line x1="44" y1="36" x2="56" y2="36" />
-          <line x1="8" y1="48" x2="56" y2="48" />
+        <svg viewBox="0 0 64 64" fill="none" className={cn}>
+          {/* Coil body — pulsing spiral */}
+          <g style={{ animation: "ppCoilPulse 2.5s ease-in-out infinite", transformOrigin: "20px 30px" }}>
+            <path d="M20 30 C20 18, 10 18, 10 30 C10 42, 20 42, 20 30" stroke="currentColor" strokeWidth="1.6" />
+            <path d="M20 30 C20 22, 14 22, 14 30 C14 38, 20 38, 20 30" stroke="currentColor" strokeWidth="1.2" opacity="0.6" />
+            <circle cx="17" cy="30" r="3" fill="currentColor" opacity="0.25" />
+          </g>
+          {/* Strip pulling out from coil */}
+          <line x1="20" y1="30" x2="56" y2="30" stroke="currentColor" strokeWidth="1.8"
+            strokeDasharray="6 3" style={{ animation: "ppStripMove 1.2s linear infinite" }} />
+          {/* Flattening rollers */}
+          <circle cx="38" cy="22" r="4" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" />
+          <circle cx="38" cy="38" r="4" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" />
+          {/* Trim blade */}
+          <path d="M52 20 L56 30 L48 30 Z" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.6" />
+          {/* Ground line */}
+          <line x1="6" y1="48" x2="58" y2="48" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
         </svg>
       );
+
+    /* ─── Step 2: Forming — flat strip morphs to cylinder ─── */
     case 2:
       return (
-        <svg {...props}>
-          <line x1="8" y1="48" x2="56" y2="48" />
-          <path d="M12 38 Q32 10, 52 38" />
-          <circle cx="32" cy="28" r="14" />
+        <svg viewBox="0 0 64 64" fill="none" className={cn}>
+          {/* Morphing shape — flat → curve → circle */}
+          <path
+            d="M14 40 L50 40"
+            stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"
+            style={{ animation: "ppFormMorph 4s ease-in-out infinite" }}
+          />
+          {/* Side rollers pressing inward */}
+          <g style={{ animation: "ppArrowPress 2s ease-in-out infinite" }}>
+            <path d="M4 32 L10 32" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+            <path d="M8 28 L12 32 L8 36" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" />
+          </g>
+          <g style={{ animation: "ppArrowPressR 2s ease-in-out infinite" }}>
+            <path d="M60 32 L54 32" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+            <path d="M56 28 L52 32 L56 36" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.5" />
+          </g>
+          {/* Label: flat → O */}
+          <text x="14" y="58" fill="currentColor" fontSize="5" fontFamily="monospace" opacity="0.35">FLAT</text>
+          <text x="28" y="58" fill="currentColor" fontSize="5" fontFamily="monospace" opacity="0.25">→</text>
+          <text x="42" y="58" fill="currentColor" fontSize="5" fontFamily="monospace" opacity="0.35">PIPE</text>
         </svg>
       );
+
+    /* ─── Step 3: HF Welding — glowing seam with sparks ─── */
     case 3:
       return (
-        <svg {...props}>
-          <circle cx="32" cy="32" r="16" />
-          <line x1="32" y1="16" x2="32" y2="48" />
-          <line x1="22" y1="8" x2="26" y2="16" />
-          <line x1="42" y1="8" x2="38" y2="16" />
-          <line x1="16" y1="14" x2="22" y2="22" />
-          <line x1="48" y1="14" x2="42" y2="22" />
+        <svg viewBox="0 0 64 64" fill="none" className={cn}>
+          {/* Pipe cross-section */}
+          <circle cx="32" cy="32" r="18" stroke="currentColor" strokeWidth="1.6" />
+          <circle cx="32" cy="32" r="13" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+          {/* Weld seam — pulsing glow */}
+          <line x1="32" y1="14" x2="32" y2="50" stroke="currentColor" strokeWidth="2.5"
+            style={{ animation: "ppSeamGlow 1.5s ease-in-out infinite" }} />
+          {/* Electric arc bolts */}
+          <path d="M32 14 L27 6 L30 4" stroke="currentColor" strokeWidth="1.2" opacity="0.7" />
+          <path d="M32 14 L37 6 L34 4" stroke="currentColor" strokeWidth="1.2" opacity="0.7" />
+          {/* Spark particles */}
+          {[
+            { cx: 22, cy: 20, d: 0 }, { cx: 42, cy: 22, d: 0.3 },
+            { cx: 20, cy: 36, d: 0.6 }, { cx: 44, cy: 38, d: 0.9 },
+            { cx: 24, cy: 44, d: 1.2 }, { cx: 40, cy: 42, d: 1.5 },
+          ].map((s, i) => (
+            <circle key={i} cx={s.cx} cy={s.cy} r="1.2" fill="currentColor" opacity="0.7"
+              style={{ animation: `ppSparkDrift 1.2s ease-out ${s.d}s infinite` }} />
+          ))}
         </svg>
       );
+
+    /* ─── Step 4: Treatment & Sizing — precision crosshair + dimensions ─── */
     case 4:
       return (
-        <svg {...props}>
-          <circle cx="32" cy="32" r="16" />
-          <circle cx="32" cy="32" r="12" strokeDasharray="4 3" />
-          <line x1="32" y1="10" x2="32" y2="14" />
-          <line x1="32" y1="50" x2="32" y2="54" />
-          <line x1="10" y1="32" x2="14" y2="32" />
-          <line x1="50" y1="32" x2="54" y2="32" />
+        <svg viewBox="0 0 64 64" fill="none" className={cn}>
+          {/* Perfect circle target */}
+          <circle cx="32" cy="32" r="18" stroke="currentColor" strokeWidth="1.6" />
+          {/* Dashed tolerance ring */}
+          <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="0.6" strokeDasharray="3 3" opacity="0.3" />
+          {/* Crosshair — pulsing */}
+          <g style={{ animation: "ppCrosshairPulse 2s ease-in-out infinite" }}>
+            <line x1="32" y1="6" x2="32" y2="58" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+            <line x1="6" y1="32" x2="58" y2="32" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+          </g>
+          {/* Dimension arrows pressing in */}
+          <g style={{ animation: "ppArrowPress 2.5s ease-in-out infinite" }}>
+            <line x1="2" y1="32" x2="10" y2="32" stroke="currentColor" strokeWidth="1.4" opacity="0.6" />
+            <path d="M8 28 L12 32 L8 36" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.6" />
+          </g>
+          <g style={{ animation: "ppArrowPressR 2.5s ease-in-out infinite" }}>
+            <line x1="62" y1="32" x2="54" y2="32" stroke="currentColor" strokeWidth="1.4" opacity="0.6" />
+            <path d="M56 28 L52 32 L56 36" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.6" />
+          </g>
+          {/* Dimension ticks top/bottom */}
+          <line x1="14" y1="6" x2="50" y2="6" stroke="currentColor" strokeWidth="0.6" opacity="0.3" />
+          <line x1="14" y1="4" x2="14" y2="8" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+          <line x1="50" y1="4" x2="50" y2="8" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+          {/* Measurement label */}
+          <text x="32" y="62" textAnchor="middle" fill="currentColor" fontSize="5" fontFamily="monospace" opacity="0.4">Ø±0.5</text>
         </svg>
       );
+
+    /* ─── Step 5: Testing & Certification — shield + checkmark + scan waves ─── */
     case 5:
       return (
-        <svg {...props}>
-          <circle cx="32" cy="32" r="20" />
-          <circle cx="32" cy="32" r="16" />
-          <polyline points="22,32 29,40 42,24" />
+        <svg viewBox="0 0 64 64" fill="none" className={cn}
+          style={{ animation: "ppShieldPulse 3s ease-in-out infinite" }}>
+          {/* Shield shape */}
+          <path d="M32 8 L52 16 L52 34 Q52 50, 32 56 Q12 50, 12 34 L12 16 Z"
+            stroke="currentColor" strokeWidth="1.6" fill="none" />
+          {/* Inner shield glow */}
+          <path d="M32 14 L46 20 L46 33 Q46 45, 32 50 Q18 45, 18 33 L18 20 Z"
+            stroke="currentColor" strokeWidth="0.6" fill="currentColor" opacity="0.06" />
+          {/* Checkmark — drawn in */}
+          <polyline points="22,34 28,42 42,24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            strokeDasharray="30" style={{ animation: "ppCheckDraw 2s ease-out infinite" }} />
+          {/* Ultrasonic scan waves */}
+          {[0, 1, 2].map((i) => (
+            <path key={i}
+              d={`M${56 + i * 4} ${20 - i} Q${58 + i * 4} 32, ${56 + i * 4} ${44 + i}`}
+              stroke="currentColor" strokeWidth={1 - i * 0.2} opacity="0.4"
+              strokeDasharray="40"
+              style={{ animation: `ppWaveSweep 2s ease-out ${i * 0.3}s infinite` }} />
+          ))}
         </svg>
       );
+
     default:
       return null;
   }
@@ -95,7 +170,7 @@ function StepIconStatic({ step, className }: { step: number; className?: string 
 /* ── Step 1 Visual: Steel Preparation — coil unrolling, rollers, trim ── */
 function PrepVisual() {
   return (
-    <svg viewBox="0 0 260 150" fill="none" className="w-full max-w-[340px]">
+    <svg viewBox="0 0 260 160" fill="none" className="w-full max-w-[340px]">
       {/* Coil glow pulse */}
       <circle className="prep-glow" cx="52" cy="75" r="50" fill="none"
         stroke="var(--molten-500)" strokeWidth="6" opacity="0" filter="url(#prepBlur)" />
@@ -334,7 +409,7 @@ function SizingVisual() {
 function TestingVisual() {
   return (
     <div className="w-full max-w-[340px]">
-      <svg viewBox="0 0 260 150" fill="none" className="w-full">
+      <svg viewBox="0 0 260 160" fill="none" className="w-full">
         <defs>
           <filter id="testGlow"><feGaussianBlur stdDeviation="4" /></filter>
         </defs>
@@ -395,7 +470,7 @@ function TestingVisual() {
       </svg>
 
       {/* GOST certification labels */}
-      <div className="cert-labels flex flex-wrap gap-2 mt-3 opacity-0">
+      <div className="cert-labels flex flex-wrap justify-center gap-2 mt-4 opacity-0">
         {["GOST 10704", "GOST 10705", "ISO 559", "Uzstandard"].map((s) => (
           <span key={s} className="font-mono text-[0.58rem] px-2 py-0.5 tracking-wider uppercase"
             style={{ color: "var(--status-success-light)", border: "1px solid rgba(46,140,88,0.35)", background: "rgba(46,140,88,0.08)" }}>
@@ -447,15 +522,9 @@ export default function ProductionProcess() {
           scrollTrigger: {
             trigger: desktop,
             start: "top top",
-            end: () => `+=${window.innerHeight * 5}`,
+            end: () => `+=${window.innerHeight * 8}`,
             pin: true,
-            scrub: 1,
-            snap: {
-              snapTo: 1 / (totalPanels - 1),
-              duration: { min: 0.3, max: 0.8 },
-              delay: 0.05,
-              ease: "power2.inOut",
-            },
+            scrub: 0.5,
             invalidateOnRefresh: true,
           },
         });
@@ -487,7 +556,7 @@ export default function ProductionProcess() {
 
         // Per-panel content reveals
         const STEP = DUR / (totalPanels - 1); // duration of one step in timeline units
-        const REVEAL = STEP * 0.4; // content reveals in the first 40% of each step's window
+        const REVEAL = STEP * 0.65; // content reveals in the first 65% of each step's window
 
         panels.forEach((panel, i) => {
           const p = (i / (totalPanels - 1)) * DUR; // position in timeline
@@ -598,6 +667,10 @@ export default function ProductionProcess() {
           }
         });
 
+        // ── Shared animation window: all SVG anims use the full step dwell time ──
+        const SVG_LEAD = STEP * 0.30;  // how early SVG anims start before panel center
+        const SVG_TAIL = STEP * 0.40;  // how far SVG anims extend after panel center
+
         /* ── Step 2: Forming — flat → curve → U → circle + rollers + glow ─── */
         const formFlat = section.querySelector(".forming-flat");
         const formCurve = section.querySelector(".forming-curve");
@@ -611,15 +684,15 @@ export default function ProductionProcess() {
           const p2 = (1 / (totalPanels - 1)) * DUR;
           // pressure lines appear first (context)
           if (formPressure) {
-            mainTl.to(formPressure, { opacity: 0.4, duration: STEP * 0.15 }, p2 - STEP * 0.15);
+            mainTl.to(formPressure, { opacity: 0.4, duration: STEP * 0.15 }, p2 - SVG_LEAD);
           }
           // rollers squeeze in from sides
           if (formRollers) {
             gsap.set(formRollers, { scaleX: 1.4, opacity: 0 });
-            mainTl.to(formRollers, { opacity: 1, scaleX: 1, duration: STEP * 0.2, ease: "back.out(1.5)" }, p2 - STEP * 0.12);
+            mainTl.to(formRollers, { opacity: 1, scaleX: 1, duration: STEP * 0.2, ease: "back.out(1.5)" }, p2 - SVG_LEAD + STEP * 0.05);
           }
           // flat → curve (starts bending)
-          mainTl.to(formFlat, { opacity: 0, scaleY: 0.5, duration: STEP * 0.12, ease: "power2.in" }, p2 - STEP * 0.1);
+          mainTl.to(formFlat, { opacity: 0, scaleY: 0.5, duration: STEP * 0.12, ease: "power2.in" }, p2 - SVG_LEAD + STEP * 0.08);
           if (formCurve) {
             gsap.set(formCurve, { scale: 0.95, transformOrigin: "center center" });
             mainTl.to(formCurve, { opacity: 1, scale: 1, duration: STEP * 0.15, ease: "power2.out" }, p2 - STEP * 0.06);
@@ -627,24 +700,24 @@ export default function ProductionProcess() {
           }
           // curve → U
           mainTl.to(formU, { opacity: 1, duration: STEP * 0.12 }, p2 + STEP * 0.04);
-          mainTl.to(formU, { opacity: 0, duration: STEP * 0.08 }, p2 + STEP * 0.16);
+          mainTl.to(formU, { opacity: 0, duration: STEP * 0.08 }, p2 + STEP * 0.14);
           // U → circle with flash glow
           if (formGlow) {
-            mainTl.to(formGlow, { opacity: 0.35, duration: STEP * 0.12 }, p2 + STEP * 0.16);
-            mainTl.to(formGlow, { opacity: 0, duration: STEP * 0.2 }, p2 + STEP * 0.28);
+            mainTl.to(formGlow, { opacity: 0.35, duration: STEP * 0.12 }, p2 + STEP * 0.14);
+            mainTl.to(formGlow, { opacity: 0, duration: STEP * 0.15 }, p2 + SVG_TAIL - STEP * 0.05);
           }
-          mainTl.to(formCircle, { opacity: 1, duration: STEP * 0.18, ease: "back.out(1.2)" }, p2 + STEP * 0.17);
+          mainTl.to(formCircle, { opacity: 1, duration: STEP * 0.18, ease: "back.out(1.2)" }, p2 + STEP * 0.15);
           // pressure lines fade
           if (formPressure) {
-            mainTl.to(formPressure, { opacity: 0, duration: STEP * 0.12 }, p2 + STEP * 0.22);
+            mainTl.to(formPressure, { opacity: 0, duration: STEP * 0.12 }, p2 + STEP * 0.18);
           }
           // rollers fade out
           if (formRollers) {
-            mainTl.to(formRollers, { opacity: 0, duration: STEP * 0.12 }, p2 + STEP * 0.24);
+            mainTl.to(formRollers, { opacity: 0, duration: STEP * 0.12 }, p2 + STEP * 0.20);
           }
           // label fades in at end
           if (formLabel) {
-            mainTl.to(formLabel, { opacity: 0.8, y: -4, duration: STEP * 0.2, ease: "power2.out" }, p2 + STEP * 0.2);
+            mainTl.to(formLabel, { opacity: 0.8, y: -4, duration: STEP * 0.2, ease: "power2.out" }, p2 + STEP * 0.18);
           }
         }
 
@@ -661,28 +734,28 @@ export default function ProductionProcess() {
           const p3 = (2 / (totalPanels - 1)) * DUR;
           // heat zone fades in behind everything
           if (weldHeatZone) {
-            mainTl.to(weldHeatZone, { opacity: 0.6, duration: STEP * 0.3 }, p3 - STEP * 0.15);
+            mainTl.to(weldHeatZone, { opacity: 0.6, duration: STEP * 0.3 }, p3 - SVG_LEAD);
           }
           // seam ignites with flash
-          mainTl.to(weldSeam, { opacity: 1, strokeWidth: 5, duration: STEP * 0.12, ease: "power3.in" }, p3 - STEP * 0.1);
+          mainTl.to(weldSeam, { opacity: 1, strokeWidth: 5, duration: STEP * 0.12, ease: "power3.in" }, p3 - SVG_LEAD + STEP * 0.08);
           mainTl.to(weldSeam, { strokeWidth: 3, duration: STEP * 0.15 }, p3 + STEP * 0.02);
           // inner glow at seam point
           if (weldInnerGlow) {
-            mainTl.to(weldInnerGlow, { opacity: 0.6, duration: STEP * 0.15 }, p3 - STEP * 0.08);
+            mainTl.to(weldInnerGlow, { opacity: 0.6, duration: STEP * 0.15 }, p3 - SVG_LEAD + STEP * 0.10);
             mainTl.to(weldInnerGlow, { opacity: 0.2, duration: STEP * 0.25 }, p3 + STEP * 0.15);
           }
           // outer glow ring pulses up and down
-          mainTl.to(weldGlow, { opacity: 0.6, duration: STEP * 0.2 }, p3 - STEP * 0.08);
+          mainTl.to(weldGlow, { opacity: 0.6, duration: STEP * 0.2 }, p3 - SVG_LEAD + STEP * 0.10);
           mainTl.to(weldGlow, { opacity: 0.25, duration: STEP * 0.15 }, p3 + STEP * 0.08);
-          mainTl.to(weldGlow, { opacity: 0.5, duration: STEP * 0.1 }, p3 + STEP * 0.2);
+          mainTl.to(weldGlow, { opacity: 0.5, duration: STEP * 0.1 }, p3 + STEP * 0.18);
           // electric arcs flash in rapidly, flicker
           weldArcs.forEach((arc, ai) => {
             mainTl.to(arc, { opacity: 1, duration: STEP * 0.05 }, p3 - STEP * 0.06 + ai * STEP * 0.02);
             mainTl.to(arc, { opacity: 0.3, duration: STEP * 0.04 }, p3 + STEP * 0.02 + ai * STEP * 0.02);
             mainTl.to(arc, { opacity: 0.9, duration: STEP * 0.04 }, p3 + STEP * 0.08 + ai * STEP * 0.015);
-            mainTl.to(arc, { opacity: 0, duration: STEP * 0.08 }, p3 + STEP * 0.18 + ai * STEP * 0.02);
+            mainTl.to(arc, { opacity: 0, duration: STEP * 0.08 }, p3 + STEP * 0.16 + ai * STEP * 0.02);
           });
-          // sparks fly outward — bigger radius, more dramatic
+          // sparks fly outward
           sparks.forEach((spark, si) => {
             const angle = (si / sparks.length) * Math.PI * 2;
             const dx = Math.cos(angle) * 38;
@@ -690,23 +763,23 @@ export default function ProductionProcess() {
             mainTl.fromTo(spark,
               { opacity: 0, x: 0, y: 0, scale: 0.5 },
               { opacity: 1, x: dx * 0.4, y: dy * 0.4, scale: 1.5, duration: STEP * 0.08, ease: "power3.out" },
-              p3 + STEP * 0.01 + si * STEP * 0.012
+              p3 + STEP * 0.01 + si * STEP * 0.01
             );
             mainTl.to(spark,
-              { x: dx, y: dy, opacity: 0, scale: 0.3, duration: STEP * 0.18, ease: "power1.out" },
-              p3 + STEP * 0.09 + si * STEP * 0.012
+              { x: dx, y: dy, opacity: 0, scale: 0.3, duration: STEP * 0.15, ease: "power1.out" },
+              p3 + STEP * 0.09 + si * STEP * 0.01
             );
           });
           // temperature readout with bg box
           if (weldTempBg) {
-            mainTl.to(weldTempBg, { opacity: 1, duration: STEP * 0.15 }, p3 + STEP * 0.06);
+            mainTl.to(weldTempBg, { opacity: 1, duration: STEP * 0.15 }, p3 + STEP * 0.08);
           }
           if (weldTemp) {
-            mainTl.to(weldTemp, { opacity: 1, duration: STEP * 0.15 }, p3 + STEP * 0.08);
+            mainTl.to(weldTemp, { opacity: 1, duration: STEP * 0.15 }, p3 + STEP * 0.10);
           }
           // heat zone fades
           if (weldHeatZone) {
-            mainTl.to(weldHeatZone, { opacity: 0.2, duration: STEP * 0.2 }, p3 + STEP * 0.25);
+            mainTl.to(weldHeatZone, { opacity: 0.2, duration: STEP * 0.2 }, p3 + SVG_TAIL - STEP * 0.05);
           }
         }
 
@@ -725,7 +798,7 @@ export default function ProductionProcess() {
           // arrows slide in from far edges
           if (sizingArrows) {
             gsap.set(sizingArrows, { scaleX: 1.3, opacity: 0 });
-            mainTl.to(sizingArrows, { opacity: 1, scaleX: 1, duration: STEP * 0.2, ease: "power3.out" }, p4 - STEP * 0.18);
+            mainTl.to(sizingArrows, { opacity: 1, scaleX: 1, duration: STEP * 0.2, ease: "power3.out" }, p4 - SVG_LEAD);
           }
           // oval squeezes to circle (animate rx/ry)
           mainTl.to(sizingOval, {
@@ -733,38 +806,38 @@ export default function ProductionProcess() {
             strokeDasharray: "none",
             duration: STEP * 0.25,
             ease: "power2.inOut"
-          }, p4 - STEP * 0.08);
-          mainTl.to(sizingOval, { opacity: 0, duration: STEP * 0.08 }, p4 + STEP * 0.12);
+          }, p4 - SVG_LEAD + STEP * 0.08);
+          mainTl.to(sizingOval, { opacity: 0, duration: STEP * 0.08 }, p4 + STEP * 0.10);
           // glow flash on morph completion
           if (sizingGlow) {
-            mainTl.to(sizingGlow, { opacity: 0.4, duration: STEP * 0.1, ease: "power2.in" }, p4 + STEP * 0.1);
-            mainTl.to(sizingGlow, { opacity: 0, duration: STEP * 0.2 }, p4 + STEP * 0.2);
+            mainTl.to(sizingGlow, { opacity: 0.4, duration: STEP * 0.1, ease: "power2.in" }, p4 + STEP * 0.08);
+            mainTl.to(sizingGlow, { opacity: 0, duration: STEP * 0.2 }, p4 + STEP * 0.18);
           }
-          mainTl.to(sizingCircle, { opacity: 1, duration: STEP * 0.15, ease: "back.out(1.2)" }, p4 + STEP * 0.08);
+          mainTl.to(sizingCircle, { opacity: 1, duration: STEP * 0.15, ease: "back.out(1.2)" }, p4 + STEP * 0.06);
           // crosshair snaps on
           if (sizingCrosshair) {
-            mainTl.to(sizingCrosshair, { opacity: 0.6, duration: STEP * 0.08 }, p4 + STEP * 0.12);
+            mainTl.to(sizingCrosshair, { opacity: 0.6, duration: STEP * 0.08 }, p4 + STEP * 0.10);
           }
           // arrows pulse then dim
           if (sizingArrows) {
-            mainTl.to(sizingArrows, { opacity: 0.6, duration: STEP * 0.05 }, p4 + STEP * 0.1);
-            mainTl.to(sizingArrows, { opacity: 0.2, duration: STEP * 0.15 }, p4 + STEP * 0.18);
+            mainTl.to(sizingArrows, { opacity: 0.6, duration: STEP * 0.05 }, p4 + STEP * 0.08);
+            mainTl.to(sizingArrows, { opacity: 0.2, duration: STEP * 0.15 }, p4 + STEP * 0.16);
           }
           // dimension lines draw in with scale
           if (sizingDimH) {
             gsap.set(sizingDimH, { scaleX: 0, transformOrigin: "center center" });
-            mainTl.to(sizingDimH, { opacity: 1, scaleX: 1, duration: STEP * 0.2, ease: "power2.out" }, p4 + STEP * 0.12);
+            mainTl.to(sizingDimH, { opacity: 1, scaleX: 1, duration: STEP * 0.2, ease: "power2.out" }, p4 + STEP * 0.10);
           }
           if (sizingDimV) {
             gsap.set(sizingDimV, { scaleY: 0, transformOrigin: "center center" });
-            mainTl.to(sizingDimV, { opacity: 1, scaleY: 1, duration: STEP * 0.2, ease: "power2.out" }, p4 + STEP * 0.16);
+            mainTl.to(sizingDimV, { opacity: 1, scaleY: 1, duration: STEP * 0.2, ease: "power2.out" }, p4 + STEP * 0.14);
           }
           // text bg + text labels
           if (sizingTextBg) {
-            mainTl.to(sizingTextBg, { opacity: 1, duration: STEP * 0.12 }, p4 + STEP * 0.2);
+            mainTl.to(sizingTextBg, { opacity: 1, duration: STEP * 0.12 }, p4 + STEP * 0.18);
           }
           sizingTexts.forEach((txt, ti) => {
-            mainTl.to(txt, { opacity: 1, duration: STEP * 0.12, ease: "power2.out" }, p4 + STEP * 0.22 + ti * STEP * 0.04);
+            mainTl.to(txt, { opacity: 1, duration: STEP * 0.12, ease: "power2.out" }, p4 + STEP * 0.20 + ti * STEP * 0.04);
           });
         }
 
@@ -786,41 +859,41 @@ export default function ProductionProcess() {
           const p5 = (4 / (totalPanels - 1)) * DUR;
           // pipe glow pulsing
           if (certPipeGlow) {
-            mainTl.to(certPipeGlow, { opacity: 0.15, duration: STEP * 0.2 }, p5 - STEP * 0.2);
+            mainTl.to(certPipeGlow, { opacity: 0.15, duration: STEP * 0.2 }, p5 - SVG_LEAD);
             mainTl.to(certPipeGlow, { opacity: 0.05, duration: STEP * 0.15 }, p5);
             mainTl.to(certPipeGlow, { opacity: 0.12, duration: STEP * 0.1 }, p5 + STEP * 0.12);
           }
           // ultrasonic waves cascade outward with scale
           certWaves.forEach((wave, wi) => {
             gsap.set(wave, { scale: 0.8, transformOrigin: "center center" });
-            mainTl.to(wave, { opacity: 0.8, scale: 1, duration: STEP * 0.1, ease: "power2.out" }, p5 - STEP * 0.22 + wi * STEP * 0.035);
+            mainTl.to(wave, { opacity: 0.8, scale: 1, duration: STEP * 0.1, ease: "power2.out" }, p5 - SVG_LEAD + wi * STEP * 0.035);
             mainTl.to(wave, { opacity: 0.15, duration: STEP * 0.12 }, p5 - STEP * 0.06 + wi * STEP * 0.025);
             mainTl.to(wave, { opacity: 0.5, duration: STEP * 0.08 }, p5 + STEP * 0.08 + wi * STEP * 0.02);
           });
           // gauge background circle
           if (certGaugeBg) {
-            mainTl.to(certGaugeBg, { opacity: 1, duration: STEP * 0.15 }, p5 - STEP * 0.18);
+            mainTl.to(certGaugeBg, { opacity: 1, duration: STEP * 0.15 }, p5 - SVG_LEAD + STEP * 0.02);
           }
           // gauge arc + ticks
           if (certGauge) {
-            mainTl.to(certGauge, { opacity: 1, duration: STEP * 0.15 }, p5 - STEP * 0.15);
+            mainTl.to(certGauge, { opacity: 1, duration: STEP * 0.15 }, p5 - SVG_LEAD + STEP * 0.05);
           }
           if (certGaugeTicks) {
-            mainTl.to(certGaugeTicks, { opacity: 1, duration: STEP * 0.12 }, p5 - STEP * 0.12);
+            mainTl.to(certGaugeTicks, { opacity: 1, duration: STEP * 0.12 }, p5 - SVG_LEAD + STEP * 0.08);
           }
           // needle sweeps from far left to target with overshoot
           if (certNeedle) {
             gsap.set(certNeedle, { rotation: -90, transformOrigin: "50% 100%" });
-            mainTl.to(certNeedle, { opacity: 1, rotation: 10, duration: STEP * 0.25, ease: "power3.out" }, p5 - STEP * 0.1);
+            mainTl.to(certNeedle, { opacity: 1, rotation: 10, duration: STEP * 0.25, ease: "power3.out" }, p5 - STEP * 0.08);
             mainTl.to(certNeedle, { rotation: 0, duration: STEP * 0.1, ease: "power2.inOut" }, p5 + STEP * 0.12);
           }
           if (certNeedleHub) {
-            mainTl.to(certNeedleHub, { opacity: 1, duration: STEP * 0.1 }, p5 - STEP * 0.08);
+            mainTl.to(certNeedleHub, { opacity: 1, duration: STEP * 0.1 }, p5 - STEP * 0.06);
           }
           // pressure text punches in
           if (certPressure) {
             gsap.set(certPressure, { scale: 0.5 });
-            mainTl.to(certPressure, { opacity: 1, scale: 1, duration: STEP * 0.12, ease: "back.out(2)" }, p5 + STEP * 0.1);
+            mainTl.to(certPressure, { opacity: 1, scale: 1, duration: STEP * 0.12, ease: "back.out(2)" }, p5 + STEP * 0.08);
           }
           // connector line
           if (certConnector) {
@@ -830,7 +903,7 @@ export default function ProductionProcess() {
           if (shield && (shield as SVGGeometryElement).getTotalLength) {
             const sLen = (shield as SVGGeometryElement).getTotalLength();
             gsap.set(shield, { strokeDasharray: sLen, strokeDashoffset: sLen });
-            mainTl.to(shield, { strokeDashoffset: 0, duration: STEP * 0.4, ease: "power2.out" }, p5 - STEP * 0.2);
+            mainTl.to(shield, { strokeDashoffset: 0, duration: STEP * 0.35, ease: "power2.out" }, p5 - SVG_LEAD + STEP * 0.02);
           }
           // shield glow pulses on completion
           if (shieldGlow) {
@@ -842,12 +915,12 @@ export default function ProductionProcess() {
             const cLen = (check as SVGGeometryElement).getTotalLength();
             gsap.set(check, { strokeDasharray: cLen, strokeDashoffset: cLen, scale: 0.8, transformOrigin: "center center" });
             mainTl.to(check, { strokeDashoffset: 0, scale: 1.15, duration: STEP * 0.2, ease: "power3.out" }, p5 + STEP * 0.02);
-            mainTl.to(check, { scale: 1, duration: STEP * 0.1, ease: "power2.inOut" }, p5 + STEP * 0.2);
+            mainTl.to(check, { scale: 1, duration: STEP * 0.1, ease: "power2.inOut" }, p5 + STEP * 0.18);
           }
           // GOST labels cascade in
           if (certLabels) {
             gsap.set(certLabels, { y: 8 });
-            mainTl.to(certLabels, { opacity: 1, y: 0, duration: STEP * 0.2, ease: "power2.out" }, p5 + STEP * 0.12);
+            mainTl.to(certLabels, { opacity: 1, y: 0, duration: STEP * 0.2, ease: "power2.out" }, p5 + STEP * 0.10);
           }
         }
       });
@@ -948,20 +1021,20 @@ export default function ProductionProcess() {
                 style={{ background: `radial-gradient(ellipse 55% 55% at 35% 50%, ${step.glowColor}, transparent 70%)` }}
               />
 
+              {/* Giant step number — positioned at panel level for consistent placement */}
+              <span
+                className="absolute top-1/2 -translate-y-1/2 left-[4%] font-mono font-bold leading-none select-none pointer-events-none"
+                style={{ fontSize: "clamp(6rem, 14vw, 12rem)", color: step.color, opacity: 0.06 }}
+              >
+                0{step.num}
+              </span>
+
               {/* Two-column layout: VISUAL | TEXT */}
               <div className="relative z-10 w-full grid grid-cols-2 gap-8 lg:gap-16 max-w-6xl mx-auto px-8 lg:px-16 pt-20">
                 {/* Left — Visual area */}
-                <div className="pp-visual-area flex flex-col items-center justify-center relative">
-                  {/* Giant step number (background) */}
-                  <span
-                    className="absolute top-0 left-0 font-mono font-bold leading-none select-none"
-                    style={{ fontSize: "clamp(6rem, 12vw, 11rem)", color: step.color, opacity: 0.07 }}
-                  >
-                    0{step.num}
-                  </span>
-
+                <div className="pp-visual-area flex flex-col items-center justify-center relative min-h-[340px]">
                   {/* Visual */}
-                  <div className="relative z-10" style={{ color: step.color }}>
+                  <div className="relative z-10 flex items-center justify-center" style={{ color: step.color, minHeight: "200px" }}>
                     {step.num === 1 ? <PrepVisual /> :
                      step.num === 2 ? <FormingVisual /> :
                      step.num === 3 ? <WeldingVisual /> :
@@ -969,13 +1042,15 @@ export default function ProductionProcess() {
                      <TestingVisual />}
                   </div>
 
-                  {/* Standard badge below visual */}
-                  <span
-                    className="mt-6 font-mono text-[0.56rem] px-2.5 py-1 tracking-wider uppercase"
-                    style={{ color: "var(--text-muted)", border: "1px solid var(--border-dim)", background: "rgba(255,255,255,0.03)" }}
-                  >
-                    {step.standard}
-                  </span>
+                  {/* Standard badge below visual — hidden for step 5 which has inline cert labels */}
+                  {step.num !== 5 && (
+                    <span
+                      className="mt-6 font-mono text-[0.56rem] px-2.5 py-1 tracking-wider uppercase"
+                      style={{ color: "var(--text-muted)", border: "1px solid var(--border-dim)", background: "rgba(255,255,255,0.03)" }}
+                    >
+                      {step.standard}
+                    </span>
+                  )}
                 </div>
 
                 {/* Right — Text content */}

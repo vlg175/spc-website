@@ -11,12 +11,85 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import { Circle, Square, RectangleHorizontal, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* ── Pipe cross-section SVGs — technical drawing aesthetic ────────────── */
+function RoundPipeSVG({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 140 140" fill="none" className={className}>
+      {/* Outer wall */}
+      <circle cx="70" cy="70" r="46" stroke="var(--steel-300)" strokeWidth="1.8" className="pipe-outer" />
+      {/* Inner bore */}
+      <circle cx="70" cy="70" r="34" stroke="var(--steel-400)" strokeWidth="1.2" className="pipe-inner" />
+      {/* Wall fill */}
+      <circle cx="70" cy="70" r="40" stroke="none" fill="rgba(143,163,184,0.06)" />
+      {/* Centermark */}
+      <line x1="67" y1="70" x2="73" y2="70" stroke="var(--steel-500)" strokeWidth="0.6" />
+      <line x1="70" y1="67" x2="70" y2="73" stroke="var(--steel-500)" strokeWidth="0.6" />
+      {/* Dimension line — horizontal */}
+      <line x1="20" y1="70" x2="24" y2="70" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="116" y1="70" x2="120" y2="70" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="24" y1="70" x2="116" y2="70" stroke="var(--molten-500)" strokeWidth="0.4" strokeDasharray="3 3" className="pipe-dim" opacity="0" />
+      {/* Dimension ticks */}
+      <line x1="24" y1="66" x2="24" y2="74" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="116" y1="66" x2="116" y2="74" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+    </svg>
+  );
+}
+
+function SquarePipeSVG({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 140 140" fill="none" className={className}>
+      {/* Outer wall */}
+      <rect x="28" y="28" width="84" height="84" rx="4" stroke="var(--steel-300)" strokeWidth="1.8" className="pipe-outer" />
+      {/* Inner bore */}
+      <rect x="40" y="40" width="60" height="60" rx="2" stroke="var(--steel-400)" strokeWidth="1.2" className="pipe-inner" />
+      {/* Wall fill */}
+      <rect x="34" y="34" width="72" height="72" rx="3" stroke="none" fill="rgba(143,163,184,0.06)" />
+      {/* Centermark */}
+      <line x1="67" y1="70" x2="73" y2="70" stroke="var(--steel-500)" strokeWidth="0.6" />
+      <line x1="70" y1="67" x2="70" y2="73" stroke="var(--steel-500)" strokeWidth="0.6" />
+      {/* Corner detail lines */}
+      <line x1="28" y1="20" x2="28" y2="24" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="112" y1="20" x2="112" y2="24" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="28" y1="20" x2="112" y2="20" stroke="var(--molten-500)" strokeWidth="0.4" strokeDasharray="3 3" className="pipe-dim" opacity="0" />
+      {/* Side ticks */}
+      <line x1="20" y1="28" x2="24" y2="28" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="20" y1="112" x2="24" y2="112" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="20" y1="28" x2="20" y2="112" stroke="var(--molten-500)" strokeWidth="0.4" strokeDasharray="3 3" className="pipe-dim" opacity="0" />
+    </svg>
+  );
+}
+
+function ProfilePipeSVG({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 160 120" fill="none" className={className}>
+      {/* Outer wall */}
+      <rect x="22" y="26" width="116" height="68" rx="4" stroke="var(--steel-300)" strokeWidth="1.8" className="pipe-outer" />
+      {/* Inner bore */}
+      <rect x="34" y="38" width="92" height="44" rx="2" stroke="var(--steel-400)" strokeWidth="1.2" className="pipe-inner" />
+      {/* Wall fill */}
+      <rect x="28" y="32" width="104" height="56" rx="3" stroke="none" fill="rgba(143,163,184,0.06)" />
+      {/* Centermark */}
+      <line x1="77" y1="60" x2="83" y2="60" stroke="var(--steel-500)" strokeWidth="0.6" />
+      <line x1="80" y1="57" x2="80" y2="63" stroke="var(--steel-500)" strokeWidth="0.6" />
+      {/* Dimension — top */}
+      <line x1="22" y1="16" x2="138" y2="16" stroke="var(--molten-500)" strokeWidth="0.4" strokeDasharray="3 3" className="pipe-dim" opacity="0" />
+      <line x1="22" y1="12" x2="22" y2="20" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="138" y1="12" x2="138" y2="20" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      {/* Dimension — right */}
+      <line x1="148" y1="26" x2="148" y2="94" stroke="var(--molten-500)" strokeWidth="0.4" strokeDasharray="3 3" className="pipe-dim" opacity="0" />
+      <line x1="144" y1="26" x2="152" y2="26" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+      <line x1="144" y1="94" x2="152" y2="94" stroke="var(--molten-500)" strokeWidth="0.8" className="pipe-dim" opacity="0" />
+    </svg>
+  );
+}
+
 /* ── Product data from content.md ─────────────────────────────────────── */
+type PipeSVGComponent = ({ className }: { className?: string }) => React.JSX.Element;
 interface Product {
   name: string;
   tagline: string;
@@ -24,7 +97,7 @@ interface Product {
   specs: string;
   gosts: string[];
   mailto: string;
-  Icon: typeof Circle;
+  Icon: PipeSVGComponent;
 }
 
 /* ── Component ─────────────────────────────────────────────────────────── */
@@ -39,7 +112,7 @@ export default function Products() {
       specs: t("round_specs"),
       gosts: ["GOST 10704", "GOST 10705", "GOST 3262"],
       mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Round%20Pipes",
-      Icon: Circle,
+      Icon: RoundPipeSVG,
     },
     {
       name: t("square_name"),
@@ -48,7 +121,7 @@ export default function Products() {
       specs: t("square_specs"),
       gosts: ["GOST 8639", "GOST 13663"],
       mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Square%20Profiles",
-      Icon: Square,
+      Icon: SquarePipeSVG,
     },
     {
       name: t("profile_name"),
@@ -57,7 +130,7 @@ export default function Products() {
       specs: t("profile_specs"),
       gosts: ["GOST 8645", "GOST 13663"],
       mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Profile%20Pipes",
-      Icon: RectangleHorizontal,
+      Icon: ProfilePipeSVG,
     },
   ];
   const sectionRef = useRef<HTMLElement>(null);
@@ -180,33 +253,52 @@ export default function Products() {
                 border: "1px solid rgba(100,128,152,0.18)",
               }}
               whileHover={{
-                y: -6,
-                boxShadow: "0 20px 52px rgba(0,0,0,0.12)",
-                transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                y: -10,
+                boxShadow: "0 24px 60px rgba(0,0,0,0.14), 0 0 0 1px rgba(232,94,34,0.12)",
+                transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
               }}
             >
-              {/* Top accent */}
-              <div className="h-[2px]" style={{ background: "var(--molten-500)" }} />
-
-              {/* Icon area — zoom on card hover via group-hover */}
+              {/* Top accent — expands on hover */}
               <div
-                className="flex items-center justify-center py-10 relative overflow-hidden"
+                className="h-[2px] transition-all duration-500 ease-out group-hover:h-[3px]"
+                style={{ background: "var(--molten-500)" }}
+              />
+
+              {/* Icon area — technical blueprint feel */}
+              <div
+                className="flex items-center justify-center py-12 relative overflow-hidden"
                 style={{ background: "var(--bg-navy)" }}
               >
-                <motion.div
-                  className="relative z-10 transition-transform duration-300 ease-out group-hover:scale-110"
-                >
-                  <product.Icon
-                    size={56}
-                    strokeWidth={1}
-                    style={{ color: "var(--steel-300)" }}
-                  />
-                </motion.div>
-                {/* Subtle glow behind icon — scales up on hover too */}
+                {/* Grid pattern overlay */}
                 <div
-                  className="absolute inset-0 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105"
+                  aria-hidden="true"
+                  className="absolute inset-0 pointer-events-none opacity-[0.04] transition-opacity duration-500 group-hover:opacity-[0.08]"
                   style={{
-                    background: "radial-gradient(circle at 50% 50%, rgba(42,62,114,0.25), transparent 70%)",
+                    backgroundImage: [
+                      "linear-gradient(rgba(143,163,184,1) 1px, transparent 1px)",
+                      "linear-gradient(90deg, rgba(143,163,184,1) 1px, transparent 1px)",
+                    ].join(", "),
+                    backgroundSize: "20px 20px",
+                  }}
+                />
+                {/* SVG icon with dimension line reveal on hover */}
+                <div
+                  className="relative z-10 transition-transform duration-400 ease-out group-hover:scale-[1.12] [&_.pipe-dim]:transition-opacity [&_.pipe-dim]:duration-500 [&_.pipe-dim]:ease-out group-hover:[&_.pipe-dim]:opacity-100 [&_.pipe-outer]:transition-all [&_.pipe-outer]:duration-500 group-hover:[&_.pipe-outer]:stroke-[var(--steel-200)]"
+                >
+                  <product.Icon className="w-24 h-24" />
+                </div>
+                {/* Warm radial glow — intensifies on hover */}
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                  style={{
+                    background: "radial-gradient(circle at 50% 55%, rgba(232,94,34,0.08), transparent 65%)",
+                  }}
+                />
+                {/* Navy ambient glow */}
+                <div
+                  className="absolute inset-0 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-110"
+                  style={{
+                    background: "radial-gradient(circle at 50% 50%, rgba(42,62,114,0.3), transparent 70%)",
                   }}
                 />
               </div>

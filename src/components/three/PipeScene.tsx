@@ -81,16 +81,21 @@ function PipeCrossSection() {
         />
       </mesh>
 
-      {/* Inner bore glow ring — front face — brighter */}
-      <mesh position={[0, 0, pipeLength / 2]}>
-        <ringGeometry args={[innerRadius - 0.03, innerRadius + 0.06, segments]} />
-        <meshBasicMaterial
-          color={MOLTEN_BRIGHT}
-          transparent
-          opacity={0.7}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
+      {/* Inner bore glow — front face — layered molten edge */}
+      <InnerGlowRing
+        innerRadius={innerRadius}
+        segments={segments}
+        zPosition={pipeLength / 2}
+        facing="front"
+      />
+
+      {/* Inner bore glow — rear face */}
+      <InnerGlowRing
+        innerRadius={innerRadius}
+        segments={segments}
+        zPosition={-pipeLength / 2}
+        facing="rear"
+      />
 
       {/* Outer edge ring — front face */}
       <mesh position={[0, 0, pipeLength / 2]}>
@@ -99,12 +104,13 @@ function PipeCrossSection() {
           color={STEEL}
           transparent
           opacity={0.35}
+          depthWrite={false}
           side={THREE.DoubleSide}
         />
       </mesh>
 
       {/* Cross-section face — semi-transparent to show depth */}
-      <mesh position={[0, 0, pipeLength / 2 + 0.001]}>
+      <mesh position={[0, 0, pipeLength / 2 + 0.005]}>
         <ringGeometry args={[innerRadius, outerRadius, segments]} />
         <meshStandardMaterial
           color={STEEL}
@@ -112,6 +118,7 @@ function PipeCrossSection() {
           roughness={0.25}
           transparent
           opacity={0.4}
+          depthWrite={false}
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -207,6 +214,87 @@ function ScanLine({
         side={THREE.DoubleSide}
       />
     </mesh>
+  );
+}
+
+/* ── Inner Glow Ring — layered molten-edge glow (fake bloom) ─────────── */
+function InnerGlowRing({
+  innerRadius,
+  segments,
+  zPosition,
+  facing,
+}: {
+  innerRadius: number;
+  segments: number;
+  zPosition: number;
+  facing: "front" | "rear";
+}) {
+  const coreRef = useRef<THREE.Mesh>(null);
+  const midRef = useRef<THREE.Mesh>(null);
+  const haloRef = useRef<THREE.Mesh>(null);
+
+  const intensityScale = facing === "rear" ? 0.6 : 1.0;
+  const zOffset = facing === "front" ? 0.01 : -0.01;
+
+  useFrame((state) => {
+    const t = state.clock.elapsedTime;
+    // 1.8 Hz matches OrbitingLight pulse for visual coherence
+    const pulse = Math.sin(t * 1.8) * 0.5 + 0.5;
+    const wobble = Math.sin(t * 0.7 + 1.2) * 0.15;
+
+    if (coreRef.current) {
+      const mat = coreRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = Math.min(1, (0.65 + pulse * 0.25 + wobble) * intensityScale);
+    }
+    if (midRef.current) {
+      const mat = midRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = Math.min(1, (0.25 + pulse * 0.2 + wobble * 0.5) * intensityScale);
+    }
+    if (haloRef.current) {
+      const mat = haloRef.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = (0.08 + pulse * 0.1) * intensityScale;
+    }
+  });
+
+  return (
+    <group position={[0, 0, zPosition + zOffset]}>
+      {/* Core — tight bright edge */}
+      <mesh ref={coreRef}>
+        <ringGeometry args={[innerRadius - 0.01, innerRadius + 0.02, segments]} />
+        <meshBasicMaterial
+          color={MOLTEN_BRIGHT}
+          transparent
+          opacity={0.8}
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      {/* Mid glow — warm spread */}
+      <mesh ref={midRef}>
+        <ringGeometry args={[innerRadius - 0.06, innerRadius + 0.08, segments]} />
+        <meshBasicMaterial
+          color={MOLTEN}
+          transparent
+          opacity={0.35}
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      {/* Outer halo — atmospheric bleed */}
+      <mesh ref={haloRef}>
+        <ringGeometry args={[innerRadius - 0.12, innerRadius + 0.14, segments]} />
+        <meshBasicMaterial
+          color={EMBER}
+          transparent
+          opacity={0.12}
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </group>
   );
 }
 
@@ -349,7 +437,7 @@ export default function PipeScene() {
           alpha: true,
           powerPreference: "high-performance",
         }}
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         style={{ background: "transparent" }}
       >
         {/* Lighting — stronger, warmer for vibrancy */}

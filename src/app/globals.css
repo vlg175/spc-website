@@ -313,6 +313,54 @@ code, pre, kbd, samp,
   to   { opacity: 1; }
 }
 
+/* ── Mobile process step icon animations ─────────────────────── */
+@keyframes ppCoilPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50%      { transform: scale(1.08); opacity: 1; }
+}
+@keyframes ppStripMove {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -24; }
+}
+@keyframes ppFormMorph {
+  0%, 10%  { d: path("M14 40 L50 40"); opacity: 1; }
+  40%, 50% { d: path("M14 40 Q32 18, 50 40"); opacity: 1; }
+  75%, 100%{ d: path("M14 38 Q14 16, 32 16 Q50 16, 50 38 Q50 58, 32 58 Q14 58, 14 38"); opacity: 1; }
+}
+@keyframes ppSeamGlow {
+  0%, 100% { opacity: 0.4; filter: blur(0px); }
+  50%      { opacity: 1; filter: blur(1.5px); }
+}
+@keyframes ppSparkDrift {
+  0%   { transform: translateY(0) scale(1); opacity: 0.9; }
+  100% { transform: translateY(-6px) scale(0.3); opacity: 0; }
+}
+@keyframes ppArrowPress {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(3px); }
+}
+@keyframes ppArrowPressR {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-3px); }
+}
+@keyframes ppCrosshairPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+@keyframes ppWaveSweep {
+  0%   { stroke-dashoffset: 40; opacity: 0; }
+  30%  { opacity: 0.8; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes ppCheckDraw {
+  0%   { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}
+@keyframes ppShieldPulse {
+  0%, 100% { filter: drop-shadow(0 0 0px rgba(46,140,88,0)); }
+  50%      { filter: drop-shadow(0 0 4px rgba(46,140,88,0.4)); }
+}
+
 
 /* ================================================================
    UTILITY CLASSES
