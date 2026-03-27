@@ -10,10 +10,9 @@ export const SITE = {
 
 export const CONTACT = {
   phone: "+998(55)900-00-77",
-  whatsapp: "+998908064448",
+  whatsapp: "+998947785533",
   email: "jv.steelpipe@gmail.com",
-  emailAlt: "ohangaronsteelpipe@gmail.com",
-  telegram: "@DiliSultonov",
+  telegram: "+998947785533",
   telegramChannel: "@spc_uzbekistan",
   instagram: "@spc_uzbekistan",
   address: {

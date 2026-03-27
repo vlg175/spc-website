@@ -31,7 +31,7 @@ const WA_PATH =
 function TelegramBtn() {
   return (
     <motion.a
-      href="https://t.me/DiliSultonov"
+      href="https://t.me/+998947785533"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Telegram — message us"
@@ -177,7 +177,7 @@ function WhatsAppBtn() {
 
   return (
     <motion.a
-      href="https://api.whatsapp.com/send?phone=998908064448"
+      href="https://wa.me/998947785533"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="WhatsApp — chat with us"

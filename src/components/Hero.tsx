@@ -25,7 +25,7 @@ export default function Hero() {
   const overlayRef      = useRef<HTMLDivElement>(null);
   const logoIntroRef    = useRef<HTMLDivElement>(null);
   const gridRef         = useRef<HTMLDivElement>(null);
-  const eyebrowRef      = useRef<HTMLParagraphElement>(null);
+  const eyebrowRef      = useRef<HTMLDivElement>(null);
   const line1Ref        = useRef<HTMLDivElement>(null);
   const line2Ref        = useRef<HTMLDivElement>(null);
   const subtitleRef     = useRef<HTMLParagraphElement>(null);
@@ -277,14 +277,34 @@ export default function Hero() {
             ════════════════════════════════════════════════════════════════ */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 w-full pt-24 pb-28 md:pt-32 md:pb-44 lg:pb-56">
 
-          {/* Eyebrow — monospaced tag line */}
-          <p
+          {/* Eyebrow — badge with pulsing dot */}
+          <div
             ref={eyebrowRef}
-            className="font-mono text-[10px] md:text-[11px] tracking-[0.3em] uppercase mb-6 md:mb-8"
-            style={{ color: "var(--molten-500)", opacity: 0 }}
+            className="inline-flex items-center gap-2.5 mb-6 md:mb-8 px-3.5 py-1.5"
+            style={{
+              opacity: 0,
+              border: "1px solid rgba(232,94,34,0.35)",
+              background: "rgba(232,94,34,0.07)",
+            }}
           >
-            {t("eyebrow")}
-          </p>
+            {/* Pulsing live indicator */}
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
+              <span
+                className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-70"
+                style={{ backgroundColor: "var(--molten-500)" }}
+              />
+              <span
+                className="relative inline-flex h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: "var(--molten-500)" }}
+              />
+            </span>
+            <p
+              className="font-mono text-[11px] md:text-[12px] tracking-[0.22em] uppercase"
+              style={{ color: "var(--molten-500)" }}
+            >
+              {t("eyebrow")}
+            </p>
+          </div>
 
           {/* ── Headline — two lines, clip-path wipe reveal ───────────── */}
           <div
