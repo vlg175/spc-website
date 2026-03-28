@@ -32,7 +32,7 @@ function TelegramBtn() {
 
   return (
     <motion.a
-      href="https://t.me/SteelPipeuz"
+      href="https://t.me/+998947785533"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Telegram — message us"

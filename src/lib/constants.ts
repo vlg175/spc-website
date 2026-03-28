@@ -12,7 +12,7 @@ export const CONTACT = {
   phone: "+998(55)900-00-77",
   whatsapp: "+998947785533",
   email: "jv.steelpipe@gmail.com",
-  telegram: "SteelPipeuz",
+  telegram: "+998947785533",
   telegramChannel: "@SteelPipeuz",
   instagram: "@steel_pipe_company",
   address: {
