@@ -23,14 +23,14 @@
     "heading2": "Driven by standards.",
     "story1": "SPC is an Uzbek-Chinese joint venture based in the Angren Free Economic Zone. One goal from day one: manufacture steel pipes to international standards on Uzbekistan's soil.",
     "story2": "The first ERW line launched in December 2019. Since then — three production lines, annual upgrades, and steadily growing capacity.",
-    "story3": "160+ specialists, certified production, partnerships with Qarmet, EVRAZ, HUAYE, and MMK. Every product is GOST-certified. Environmental responsibility is built into the process, not added for paperwork.",
+    "story3": "200+ specialists, certified production, partnerships with Qarmet, EVRAZ, HUAYE, and MMK. Every product is GOST-certified. Environmental responsibility is built into the process, not added for paperwork.",
     "sez": "SEZ Angren Free Economic Zone · Akhangaran, Tashkent Region",
     "motto": "\"We don't cut corners. We cut steel.\"",
     "stat_workers": "Local Workers",
     "stat_founded": "Founded",
     "stat_products": "Product Lines",
     "stat_pressure": "Test Pressure",
-    "stat_sublabel": "160+ local employees · 3 production lines · ERW straight-seam"
+    "stat_sublabel": "200+ local employees · 3 production lines · ERW straight-seam"
   },
   "process": {
     "label": "Production Process",
@@ -64,6 +64,7 @@
     "heading1": "Engineered for the job.",
     "heading2_accent": "Certified for the industry.",
     "download": "Download Specs",
+    "request_quote": "Request Quote",
     "certs_row": "Certified: GOST 10704 · GOST 10705 · GOST 3262 · GOST 8639 · GOST 8645 · ISO 559 · EN 10219 · Uzstandard Verified",
     "round_name": "Round Section",
     "round_tagline": "The backbone of infrastructure.",
@@ -90,7 +91,7 @@
     "f2_title": "Innovative Manufacturing",
     "f2_tagline": "Better process. Better pipe.",
     "f2_body": "Continuous production line means fewer joints, more consistency, and tighter tolerances. Modernized every year since first production in 2019 — we don't settle.",
-    "f2_detail": "Continuous Line · Annual Upgrades · 160+ Operators",
+    "f2_detail": "Continuous Line · Annual Upgrades · 200+ Operators",
     "f3_title": "Certified Quality",
     "f3_tagline": "Tested. Stamped. Shipped.",
     "f3_body": "Every batch certified under GOST 10704, GOST 10705, ISO 559, EN 10219, and Uzstandard. Hydraulic pressure tested at 12 MPa. No exceptions, no shortcuts.",
@@ -122,7 +123,14 @@
     "field_message": "Message",
     "submit": "Send Message",
     "address_value": "SEZ Angren Promzona-3, Akhangaran, Tashkent Region, Uzbekistan",
-    "disclaimer": "We respond within 1 business day · jv.steelpipe@gmail.com · ohangaronsteelpipe@gmail.com"
+    "err_name": "Full name is required",
+    "err_message": "Message is required",
+    "err_contact": "Email or phone number is required",
+    "err_email_format": "Invalid email format",
+    "toast_success": "Message sent! We'll reply within 1 business day.",
+    "toast_error": "Something went wrong. Please try again.",
+    "toast_network": "Network error. Please email us at jv.steelpipe@gmail.com",
+    "disclaimer": "We respond within 1 business day · jv.steelpipe@gmail.com"
   },
   "footer": {
     "company": "Steel Pipe Company",

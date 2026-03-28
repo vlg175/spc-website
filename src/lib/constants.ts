@@ -12,9 +12,9 @@ export const CONTACT = {
   phone: "+998(55)900-00-77",
   whatsapp: "+998947785533",
   email: "jv.steelpipe@gmail.com",
-  telegram: "+998947785533",
-  telegramChannel: "@spc_uzbekistan",
-  instagram: "@spc_uzbekistan",
+  telegram: "SteelPipeuz",
+  telegramChannel: "@SteelPipeuz",
+  instagram: "@steel_pipe_company",
   address: {
     ru: "Республика Узбекистан, Ташкентская область, Ахангаранский район, Бирлик МФЙ, СЭЗ «Ангрен», Индустриальная зона-3",
     en: "Republic of Uzbekistan, Tashkent Region, Angren SEZ, Industrial Zone-3",

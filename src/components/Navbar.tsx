@@ -146,7 +146,7 @@ export default function Navbar() {
                     onClick={() => scrollTo(id)}
                     className={[
                       "nav-link",
-                      "font-display font-semibold text-[11px] tracking-[0.18em] uppercase whitespace-nowrap",
+                      "font-mono text-[10px] tracking-[0.18em] uppercase whitespace-nowrap",
                       "transition-colors duration-200 focus-visible:outline-none",
                       isActive
                         ? "text-text-white nav-link--active"
@@ -296,7 +296,7 @@ export default function Navbar() {
                 <span className="font-mono text-[10px] text-text-muted w-4 text-right flex-shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-display font-semibold text-sm tracking-[0.15em] uppercase flex-1">
+                <span className="font-mono text-[11px] tracking-[0.15em] uppercase flex-1">
                   {label}
                 </span>
                 {isActive && (

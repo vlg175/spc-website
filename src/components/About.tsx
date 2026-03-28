@@ -33,9 +33,9 @@ export default function About() {
   ];
 
   const STATS = [
-    { end: 160,  start: 0,    suffix: "+",    duration: 2.0, label: t("stat_workers")  },
+    { end: 200,  start: 0,    suffix: "+",    duration: 2.0, label: t("stat_workers")  },
     { end: 2018, start: 2013, suffix: "",     duration: 1.6, label: t("stat_founded")  },
-    { end: 6,    start: 0,    suffix: "+",    duration: 1.4, label: t("stat_products") },
+    { end: 3,    start: 0,    suffix: "+",    duration: 1.4, label: t("stat_products") },
     { end: 12,   start: 0,    suffix: " MPa", duration: 1.4, label: t("stat_pressure") },
   ];
   const sectionRef = useRef<HTMLElement>(null);
@@ -327,7 +327,7 @@ export default function About() {
         >
           <p
             ref={mottoRef}
-            className="font-display font-bold uppercase tracking-tight"
+            className="font-body font-bold uppercase tracking-tight"
             style={{
               fontSize: "clamp(1.3rem, 2.4vw, 2rem)",
               color: "var(--navy-700)",

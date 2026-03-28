@@ -1089,7 +1089,7 @@ export default function ProductionProcess() {
 
                   {/* Tagline */}
                   <p
-                    className="pp-tagline font-display font-bold uppercase text-sm tracking-wide"
+                    className="pp-tagline font-mono uppercase text-sm tracking-wide"
                     style={{ color: step.color }}
                   >
                     &ldquo;{step.tagline}&rdquo;
@@ -1225,7 +1225,7 @@ export default function ProductionProcess() {
 
                     {/* Tagline */}
                     <p
-                      className="font-display font-bold uppercase text-xs md:text-sm tracking-wide"
+                      className="font-mono uppercase text-xs md:text-sm tracking-wide"
                       style={{ color: step.color }}
                     >
                       &ldquo;{step.tagline}&rdquo;
@@ -1242,7 +1242,7 @@ export default function ProductionProcess() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-20 pb-16 md:pb-20 lg:pb-28">
         <div style={{ borderTop: "1px solid var(--border-dim)" }} className="pt-8">
           <p
-            className="font-display font-bold uppercase tracking-tight"
+            className="font-mono uppercase tracking-tight"
             style={{ fontSize: "clamp(1rem, 2vw, 1.6rem)", color: "var(--text-muted)" }}
           >
             {t("motto")}

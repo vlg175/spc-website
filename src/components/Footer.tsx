@@ -78,7 +78,7 @@ export default function Footer() {
 
             <div>
               <p
-                className="font-display font-bold uppercase text-lg leading-snug mb-2"
+                className="font-body font-bold uppercase text-lg leading-snug mb-2"
                 style={{ color: "var(--text-primary)" }}
               >
                 {t("company")}

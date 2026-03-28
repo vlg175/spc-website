@@ -23,14 +23,14 @@
     "heading2": "Standartlar bilan yuradi.",
     "story1": "SPC — Angren SEZda joylashgan o'zbek-xitoy qo'shma korxonasi. Birinchi kundan maqsad: O'zbekiston hududida xalqaro standartlarga mos po'lat quvurlar ishlab chiqarish.",
     "story2": "Birinchi ERW liniyasi 2019-yil dekabr oyida ishga tushirildi. O'shandan beri — uchta ishlab chiqarish liniyasi, har yili modernizatsiya va quvvatning uzluksiz o'sishi.",
-    "story3": "160+ mutaxassis, sertifikatlangan ishlab chiqarish, Qarmet, EVRAZ, HUAYE va MMK bilan hamkorlik. Barcha mahsulotlar GOST sertifikatiga ega. Ekologik mas'uliyat jarayonga singdirilgan, hisobot uchun qo'shilmagan.",
+    "story3": "200+ mutaxassis, sertifikatlangan ishlab chiqarish, Qarmet, EVRAZ, HUAYE va MMK bilan hamkorlik. Barcha mahsulotlar GOST sertifikatiga ega. Ekologik mas'uliyat jarayonga singdirilgan, hisobot uchun qo'shilmagan.",
     "sez": "Angren SEZ · Ohangaron tumani, Toshkent viloyati",
     "motto": "\"Biz burchaklarni qirqmaymiz. Biz po'latni qirqamiz.\"",
     "stat_workers": "Mahalliy xodimlar",
     "stat_founded": "Asos solingan yil",
     "stat_products": "Mahsulot liniyalari",
     "stat_pressure": "Sinov bosimi",
-    "stat_sublabel": "160+ mahalliy xodim · 3 ishlab chiqarish liniyasi · ERW to'g'ri tikuvli"
+    "stat_sublabel": "200+ mahalliy xodim · 3 ishlab chiqarish liniyasi · ERW to'g'ri tikuvli"
   },
   "process": {
     "label": "Ishlab chiqarish jarayoni",
@@ -64,6 +64,7 @@
     "heading1": "Vazifa uchun ishlab chiqilgan.",
     "heading2_accent": "Sanoat uchun sertifikatlangan.",
     "download": "Spetsifikatsiyalarni yuklab olish",
+    "request_quote": "Narx so'rash",
     "certs_row": "Sertifikatlangan: GOST 10704 · GOST 10705 · GOST 3262 · GOST 8639 · GOST 8645 · ISO 559 · EN 10219 · Uzstandard",
     "round_name": "Dumaloq kesim",
     "round_tagline": "Infratuzilmaning asosi.",
@@ -90,7 +91,7 @@
     "f2_title": "Innovatsion ishlab chiqarish",
     "f2_tagline": "Yaxshi jarayon. Yaxshi quvur.",
     "f2_body": "Uzluksiz ishlab chiqarish liniyasi kamroq biriktirma, yuqori izchillik va qattiqroq tolerantliklarni anglatadi. 2019-yildan beri har yili modernizatsiya — biz to'xtab qolmaymiz.",
-    "f2_detail": "Uzluksiz liniya · Yillik modernizatsiya · 160+ operator",
+    "f2_detail": "Uzluksiz liniya · Yillik modernizatsiya · 200+ operator",
     "f3_title": "Sertifikatlangan sifat",
     "f3_tagline": "Sinaldi. Tamg'alandi. Jo'natildi.",
     "f3_body": "Har bir partiya GOST 10704, GOST 10705, ISO 559, EN 10219 va Uzstandard bo'yicha sertifikatlangan. 12 MPa bosimda gidravlik sinov. Istisnosiz, qisqartmasiz.",
@@ -122,7 +123,14 @@
     "field_message": "Xabar",
     "submit": "Xabar yuborish",
     "address_value": "Angren SEZ Sanoat Zonasi-3, Ohangaron, Toshkent viloyati, O'zbekiston",
-    "disclaimer": "1 ish kuni ichida javob beramiz · jv.steelpipe@gmail.com · ohangaronsteelpipe@gmail.com"
+    "err_name": "Ismingizni kiriting",
+    "err_message": "Xabar kiriting",
+    "err_contact": "Email yoki telefon raqam kiritilishi kerak",
+    "err_email_format": "Email formati noto'g'ri",
+    "toast_success": "Xabar yuborildi! 1 ish kuni ichida javob beramiz.",
+    "toast_error": "Xatolik yuz berdi. Qayta urinib ko'ring.",
+    "toast_network": "Tarmoq xatosi. Bizga yozing: jv.steelpipe@gmail.com",
+    "disclaimer": "1 ish kuni ichida javob beramiz · jv.steelpipe@gmail.com"
   },
   "footer": {
     "company": "Steel Pipe Company",

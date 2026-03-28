@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { motion, useAnimate } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* ─────────────────────────────────────────────────────────────────────────
    SOCIAL ICONS — SPC Website
@@ -25,54 +25,62 @@ const WA_PATH =
 
 /* ═════════════════════════════════════════════════════════════════════════
    1. TELEGRAM
-   Hover: #0088cc fill · rotate(-10deg) · translateY(-3px) · scale(1.1)
-   "The plane launches."
+   Hover: glow pulse (blue) + cross-fade to #0088cc — matches Instagram pattern
    ═════════════════════════════════════════════════════════════════════════ */
 function TelegramBtn() {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.a
-      href="https://t.me/+998947785533"
+      href="https://t.me/SteelPipeuz"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Telegram — message us"
       className="relative flex items-center justify-center w-11 h-11 focus-visible:outline-none"
-      initial="idle"
-      whileHover="hovered"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
-      {/* Hover background hint */}
+      {/* Glow pulse */}
       <motion.span
         aria-hidden="true"
-        className="absolute inset-0"
-        variants={{
-          idle:    { opacity: 0 },
-          hovered: { opacity: 1 },
-        }}
-        transition={{ duration: 0.2 }}
+        className="absolute inset-0 pointer-events-none rounded-full"
+        animate={
+          hovered
+            ? { opacity: [0, 0.6, 0], scale: [0.7, 1.7, 0.7] }
+            : { opacity: 0, scale: 1 }
+        }
+        transition={
+          hovered
+            ? { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+            : { duration: 0.18 }
+        }
         style={{
-          background: "rgba(0,136,204,0.06)",
-          border: "1px solid rgba(0,136,204,0.20)",
+          background:
+            "radial-gradient(circle, rgba(0,136,204,0.6) 0%, rgba(0,136,204,0.18) 50%, transparent 70%)",
         }}
       />
 
-      {/* Icon — tilt + fly up on hover */}
-      <motion.div
-        variants={{
-          idle:    { rotate: 0,   y: 0,  scale: 1   },
-          hovered: { rotate: -10, y: -3, scale: 1.1 },
-        }}
-        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
-          <motion.path
-            d={TG_PATH}
-            variants={{
-              idle:    { fill: STEEL      },
-              hovered: { fill: "#0088cc" },
-            }}
-            transition={{ duration: 0.25 }}
-          />
-        </svg>
-      </motion.div>
+      {/* Cross-fade: steel → Telegram blue */}
+      <span className="relative w-5 h-5 block">
+        <motion.svg
+          viewBox="0 0 24 24"
+          className="absolute inset-0 w-full h-full"
+          animate={{ opacity: hovered ? 0 : 1 }}
+          transition={{ duration: 0.28 }}
+          aria-hidden="true"
+        >
+          <path d={TG_PATH} fill={STEEL} />
+        </motion.svg>
+        <motion.svg
+          viewBox="0 0 24 24"
+          className="absolute inset-0 w-full h-full"
+          animate={{ opacity: hovered ? 1 : 0 }}
+          transition={{ duration: 0.28 }}
+          aria-hidden="true"
+        >
+          <path d={TG_PATH} fill="#0088cc" />
+        </motion.svg>
+      </span>
     </motion.a>
   );
 }
@@ -92,7 +100,7 @@ function InstagramBtn() {
 
   return (
     <motion.a
-      href="https://instagram.com/steelpipe_uz"
+      href="https://instagram.com/steel_pipe_company"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Instagram — follow our factory"
@@ -158,22 +166,10 @@ function InstagramBtn() {
 
 /* ═════════════════════════════════════════════════════════════════════════
    3. WHATSAPP
-   Hover: #25D366 fill · rotate ±3deg × 3 oscillation (phone vibrates)
-   useAnimate() fires the imperative shake on hoverStart, plays once.
+   Hover: glow pulse (green) + cross-fade to #25D366 — matches Instagram pattern
    ═════════════════════════════════════════════════════════════════════════ */
 function WhatsAppBtn() {
-  const [iconScope, animateIcon] = useAnimate();
   const [hovered, setHovered] = useState(false);
-
-  const onHoverStart = async () => {
-    setHovered(true);
-    // 3 back-and-forth rotations, plays once
-    await animateIcon(
-      iconScope.current,
-      { rotate: [0, 3, -3, 3, -3, 3, 0] },
-      { duration: 0.42, ease: "easeInOut" }
-    );
-  };
 
   return (
     <motion.a
@@ -182,31 +178,50 @@ function WhatsAppBtn() {
       rel="noopener noreferrer"
       aria-label="WhatsApp — chat with us"
       className="relative flex items-center justify-center w-11 h-11 focus-visible:outline-none"
-      onHoverStart={onHoverStart}
+      onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
     >
-      {/* Hover background hint */}
+      {/* Glow pulse */}
       <motion.span
         aria-hidden="true"
-        className="absolute inset-0"
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.18 }}
+        className="absolute inset-0 pointer-events-none rounded-full"
+        animate={
+          hovered
+            ? { opacity: [0, 0.6, 0], scale: [0.7, 1.7, 0.7] }
+            : { opacity: 0, scale: 1 }
+        }
+        transition={
+          hovered
+            ? { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+            : { duration: 0.18 }
+        }
         style={{
-          background: "rgba(37,211,102,0.06)",
-          border: "1px solid rgba(37,211,102,0.22)",
+          background:
+            "radial-gradient(circle, rgba(37,211,102,0.6) 0%, rgba(37,211,102,0.18) 50%, transparent 70%)",
         }}
       />
 
-      {/* Icon — shake scope */}
-      <div ref={iconScope}>
-        <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
-          <motion.path
-            d={WA_PATH}
-            animate={{ fill: hovered ? "#25D366" : STEEL }}
-            transition={{ duration: 0.22 }}
-          />
-        </svg>
-      </div>
+      {/* Cross-fade: steel → WhatsApp green */}
+      <span className="relative w-5 h-5 block">
+        <motion.svg
+          viewBox="0 0 24 24"
+          className="absolute inset-0 w-full h-full"
+          animate={{ opacity: hovered ? 0 : 1 }}
+          transition={{ duration: 0.28 }}
+          aria-hidden="true"
+        >
+          <path d={WA_PATH} fill={STEEL} />
+        </motion.svg>
+        <motion.svg
+          viewBox="0 0 24 24"
+          className="absolute inset-0 w-full h-full"
+          animate={{ opacity: hovered ? 1 : 0 }}
+          transition={{ duration: 0.28 }}
+          aria-hidden="true"
+        >
+          <path d={WA_PATH} fill="#25D366" />
+        </motion.svg>
+      </span>
     </motion.a>
   );
 }

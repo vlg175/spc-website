@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import {
-  Barlow_Condensed,
+  Oswald,
   IBM_Plex_Sans,
   JetBrains_Mono,
 } from "next/font/google";
@@ -10,15 +10,15 @@ import LenisProvider from "@/components/LenisProvider";
 import PageLoader from "@/components/PageLoader";
 
 /* ── Google Fonts ──────────────────────────────────────────────
-   Barlow Condensed → display headings (bold, industrial, condensed)
-   IBM Plex Sans    → body text (clean, Cyrillic support)
-   JetBrains Mono   → stats, specs, technical measurements
+   Oswald        → display headings (bold, industrial, condensed)
+                   Full Latin + Cyrillic — works on RU/UZ/EN alike
+   IBM Plex Sans → body text (clean, Cyrillic support)
+   JetBrains Mono→ stats, specs, technical measurements
    ──────────────────────────────────────────────────────────── */
-const barlowCondensed = Barlow_Condensed({
-  subsets: ["latin"],
+const oswald = Oswald({
+  subsets: ["latin", "cyrillic"],
   variable: "--font-display",
-  weight: ["500", "600", "700", "800"],
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -65,10 +65,6 @@ export const metadata: Metadata = {
       uz: "/uz",
     },
   },
-  icons: {
-    apple: "/apple-touch-icon.png",
-    other: [{ rel: "icon", url: "/favicon-192x192.png", sizes: "192x192" }],
-  },
   openGraph: {
     title: "SPC — Steel Pipe Company | ERW Steel Pipes",
     description:
@@ -107,7 +103,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html
       lang="ru"
       suppressHydrationWarning
-      className={`${barlowCondensed.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable}`}
+      className={`${oswald.variable} ${ibmPlexSans.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-bg-void text-text-primary font-body antialiased overflow-x-hidden">
         <PageLoader />

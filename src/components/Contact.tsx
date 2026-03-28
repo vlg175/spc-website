@@ -19,7 +19,7 @@ import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+/* Formspree removed — now using /api/contact (Telegram + email) */
 
 /* ── Form field types ──────────────────────────────────────────────────── */
 interface FormValues {
@@ -39,10 +39,13 @@ interface FieldProps {
   setFocused: (v: string | null) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  validation?: any;
   error?: string;
+  required?: boolean;
 }
 
-function Field({ label, name, type = "text", rows, focused, setFocused, register, error }: FieldProps) {
+function Field({ label, name, type = "text", rows, focused, setFocused, register, validation, error, required = false }: FieldProps) {
   const isActive = focused === name;
   const hasError = Boolean(error);
 
@@ -60,12 +63,7 @@ function Field({ label, name, type = "text", rows, focused, setFocused, register
     boxShadow: isActive ? "0 0 0 3px rgba(232,94,34,0.12)" : "none",
   };
 
-  const fieldProps = register(name, {
-    required: true,
-    ...(name === "email" && {
-      pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" },
-    }),
-  });
+  const fieldProps = register(name, validation);
 
   const errorId = `${name}-error`;
 
@@ -76,7 +74,7 @@ function Field({ label, name, type = "text", rows, focused, setFocused, register
         className="font-mono text-[0.56rem] tracking-[0.28em] uppercase block mb-2"
         style={{ color: isActive ? "var(--molten-400)" : "var(--text-muted)", transition: "color 0.2s" }}
       >
-        {label}
+        {label}{required && <span style={{ color: "var(--molten-500)" }}> *</span>}
       </label>
 
       {rows ? (
@@ -130,7 +128,9 @@ export default function Contact() {
   const headingTitleRef = useRef<HTMLHeadingElement>(null);
   const [focused, setFocused] = useState<string | null>(null);
 
-  const { register, handleSubmit, reset, formState: { isSubmitting, errors } } = useForm<FormValues>();
+  const { register, handleSubmit, reset, watch, formState: { isSubmitting, errors } } = useForm<FormValues>();
+  const watchEmail = watch("email");
+  const watchPhone = watch("phone");
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -220,24 +220,21 @@ export default function Contact() {
   }, []);
 
   const onSubmit = async (data: FormValues) => {
-    if (!FORMSPREE_ID) {
-      toast.error("Form not configured. Please email us directly at jv.steelpipe@gmail.com");
-      return;
-    }
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (res.ok) {
-        toast.success("Message sent! We'll reply within 1 business day.");
+      const json = await res.json();
+      if (res.ok && json.ok) {
+        toast.success(t("toast_success"));
         reset();
       } else {
-        toast.error("Something went wrong. Please try again or email us directly.");
+        toast.error(json.errors?.[0] ?? t("toast_error"));
       }
     } catch {
-      toast.error("Network error. Please email us at jv.steelpipe@gmail.com");
+      toast.error(t("toast_network"));
     }
   };
 
@@ -407,9 +404,11 @@ export default function Contact() {
               <Field
                 label={t("field_name")}
                 name="name"
+                required
                 focused={focused}
                 setFocused={setFocused}
                 register={register}
+                validation={{ required: t("err_name") }}
                 error={errors.name?.message}
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -420,6 +419,13 @@ export default function Contact() {
                   focused={focused}
                   setFocused={setFocused}
                   register={register}
+                  validation={{
+                    validate: (v: string) => {
+                      if (!v && !watchPhone) return t("err_contact");
+                      if (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return t("err_email_format");
+                      return true;
+                    },
+                  }}
                   error={errors.email?.message}
                 />
                 <Field
@@ -429,15 +435,24 @@ export default function Contact() {
                   focused={focused}
                   setFocused={setFocused}
                   register={register}
+                  validation={{
+                    validate: (v: string) => {
+                      if (!v && !watchEmail) return t("err_contact");
+                      return true;
+                    },
+                  }}
+                  error={errors.phone?.message}
                 />
               </div>
               <Field
                 label={t("field_message")}
                 name="message"
                 rows={5}
+                required
                 focused={focused}
                 setFocused={setFocused}
                 register={register}
+                validation={{ required: t("err_message") }}
                 error={errors.message?.message}
               />
             </div>

@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Download } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -96,7 +96,7 @@ interface Product {
   description: string;
   specs: string;
   gosts: string[];
-  mailto: string;
+  catalog: string;
   Icon: PipeSVGComponent;
 }
 
@@ -111,7 +111,8 @@ export default function Products() {
       description: t("round_desc"),
       specs: t("round_specs"),
       gosts: ["GOST 10704", "GOST 10705", "GOST 3262"],
-      mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Round%20Pipes",
+
+      catalog: "/catalogs/SPC_catalogue_round.pdf",
       Icon: RoundPipeSVG,
     },
     {
@@ -120,7 +121,8 @@ export default function Products() {
       description: t("square_desc"),
       specs: t("square_specs"),
       gosts: ["GOST 8639", "GOST 13663"],
-      mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Square%20Profiles",
+
+      catalog: "/catalogs/SPC_catalogue_square.pdf",
       Icon: SquarePipeSVG,
     },
     {
@@ -129,7 +131,8 @@ export default function Products() {
       description: t("profile_desc"),
       specs: t("profile_specs"),
       gosts: ["GOST 8645", "GOST 13663"],
-      mailto: "mailto:jv.steelpipe@gmail.com?subject=Spec%20Request%3A%20Profile%20Pipes",
+
+      catalog: "/catalogs/SPC_catalogue_rectangular.pdf",
       Icon: ProfilePipeSVG,
     },
   ];
@@ -353,9 +356,14 @@ export default function Products() {
                     ))}
                   </div>
 
-                  {/* Request specs via email */}
+                  {/* Download catalog PDF — saves file + opens in new tab */}
                   <a
-                    href={product.mailto}
+                    href={product.catalog}
+                    download
+                    onClick={(e) => {
+                      // Also open in new tab for preview
+                      window.open(product.catalog, "_blank", "noopener,noreferrer");
+                    }}
                     className="inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase py-2.5 px-4 transition-colors duration-200"
                     style={{
                       color: "var(--text-white)",
@@ -368,7 +376,7 @@ export default function Products() {
                       (e.currentTarget as HTMLElement).style.background = "var(--molten-500)";
                     }}
                   >
-                    <Mail size={14} strokeWidth={2} />
+                    <Download size={14} strokeWidth={2} />
                     {t("download")}
                   </a>
                 </div>

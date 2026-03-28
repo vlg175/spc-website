@@ -96,8 +96,9 @@ export default async function LocaleLayout({
       },
     ],
     sameAs: [
-      "https://t.me/DiliSultonov",
-      "https://instagram.com/steelpipe_uz",
+      "https://t.me/SteelPipeuz",
+      "https://instagram.com/steel_pipe_company",
+      "https://wa.me/998947785533",
     ],
   };
 
