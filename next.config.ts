@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob:",
-              "connect-src 'self' https://formspree.io",
+              "connect-src 'self' https://formspree.io https://vitals.vercel-insights.com",
               "frame-ancestors 'self'",
             ].join("; "),
           },
