@@ -26,8 +26,10 @@ export default class PipeErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error) {
-    // Log but don't crash the page
-    console.warn("[PipeScene] 3D render failed, hiding element:", error.message);
+    // Log but don't crash the page — dev only
+    if (process.env.NODE_ENV === "development") {
+      console.warn("[PipeScene] 3D render failed, hiding element:", error.message);
+    }
   }
 
   render() {

@@ -47,7 +47,11 @@ export default function Hero() {
     const grid = gridRef.current;
     if (!grid) return;
 
+    let lastMove = 0;
     const onMove = (e: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastMove < 50) return; // throttle to ~20fps — saves CPU on lower-end devices
+      lastMove = now;
       gsap.to(grid, {
         x: (e.clientX / window.innerWidth  - 0.5) * 24,
         y: (e.clientY / window.innerHeight - 0.5) * 24,

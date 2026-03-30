@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { memo, useId, useState } from "react";
 import { motion } from "framer-motion";
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -27,7 +27,7 @@ const WA_PATH =
    1. TELEGRAM
    Hover: glow pulse (blue) + cross-fade to #0088cc — matches Instagram pattern
    ═════════════════════════════════════════════════════════════════════════ */
-function TelegramBtn() {
+const TelegramBtn = memo(function TelegramBtn() {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -83,7 +83,7 @@ function TelegramBtn() {
       </span>
     </motion.a>
   );
-}
+});
 
 /* ═════════════════════════════════════════════════════════════════════════
    2. INSTAGRAM
@@ -92,7 +92,7 @@ function TelegramBtn() {
    Two SVGs cross-fade (Motion can't tween to gradient fill directly).
    useId() ensures unique linearGradient IDs when rendered multiple times.
    ═════════════════════════════════════════════════════════════════════════ */
-function InstagramBtn() {
+const InstagramBtn = memo(function InstagramBtn() {
   const rawId = useId();
   // Strip colons/special chars — SVG id must be valid NCName
   const gradId = `ig-${rawId.replace(/[^a-zA-Z0-9]/g, "")}`;
@@ -162,13 +162,13 @@ function InstagramBtn() {
       </span>
     </motion.a>
   );
-}
+});
 
 /* ═════════════════════════════════════════════════════════════════════════
    3. WHATSAPP
    Hover: glow pulse (green) + cross-fade to #25D366 — matches Instagram pattern
    ═════════════════════════════════════════════════════════════════════════ */
-function WhatsAppBtn() {
+const WhatsAppBtn = memo(function WhatsAppBtn() {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -224,7 +224,7 @@ function WhatsAppBtn() {
       </span>
     </motion.a>
   );
-}
+});
 
 /* ─────────────────────────────────────────────────────────────────────────
    Shared group — used by both exports

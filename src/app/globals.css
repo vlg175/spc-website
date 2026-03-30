@@ -417,6 +417,23 @@ code, pre, kbd, samp,
 
 
 /* ================================================================
+   PARTNERS MARQUEE
+   Defined here to avoid dynamic <style> injection in Partners.tsx
+   ================================================================ */
+@keyframes spc-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.spc-marquee-track {
+  animation: spc-marquee 28s linear infinite;
+  will-change: transform;
+}
+.spc-marquee-wrapper:hover .spc-marquee-track {
+  animation-play-state: paused;
+}
+
+
+/* ================================================================
    DETAILS / ACCORDION
    ================================================================ */
 details > summary {

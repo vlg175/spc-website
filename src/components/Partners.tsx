@@ -158,6 +158,7 @@ function PartnerCard({ partner }: { partner: PartnerResolved }) {
           alt={partner.name}
           fill
           sizes="(max-width: 768px) 50vw, 16vw"
+          loading="lazy"
           style={{
             objectFit: "contain",
             objectPosition: "center",
@@ -196,31 +197,7 @@ export default function Partners() {
   const headingLabelRef = useRef<HTMLSpanElement>(null);
   const headingTitleRef = useRef<HTMLHeadingElement>(null);
 
-  /* Inject marquee keyframe into <head> — most reliable in Next.js App Router */
-  useEffect(() => {
-    const id = "spc-marquee-styles";
-    if (!document.getElementById(id)) {
-      const el = document.createElement("style");
-      el.id = id;
-      el.textContent = `
-        @keyframes spc-marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .spc-marquee-track {
-          animation: spc-marquee 28s linear infinite;
-          will-change: transform;
-        }
-        .spc-marquee-wrapper:hover .spc-marquee-track {
-          animation-play-state: paused;
-        }
-      `;
-      document.head.appendChild(el);
-    }
-    return () => {
-      // keep style alive across HMR cycles — only remove on full unmount
-    };
-  }, []);
+  /* Marquee styles now live in globals.css — no runtime injection needed */
 
   useEffect(() => {
     const section = sectionRef.current;

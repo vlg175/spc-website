@@ -46,7 +46,9 @@ export async function POST(req: NextRequest) {
 
     /* ── Check SMTP config ────────────────────────────────────── */
     if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !NOTIFY_EMAIL) {
-      console.error("[contact] SMTP not configured — check .env.local");
+      if (process.env.NODE_ENV === "development") {
+        console.error("[contact] SMTP not configured — check .env.local");
+      }
       return NextResponse.json(
         { ok: false, errors: ["Email service not configured. Contact us directly at jv.steelpipe@gmail.com"] },
         { status: 503 }
@@ -94,7 +96,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[contact] Error:", err);
+    if (process.env.NODE_ENV === "development") {
+      console.error("[contact] Error:", err);
+    }
     return NextResponse.json(
       { ok: false, errors: ["Server error. Please try again or contact us directly."] },
       { status: 500 }
