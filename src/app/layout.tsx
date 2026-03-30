@@ -5,6 +5,8 @@ import {
   IBM_Plex_Sans,
   JetBrains_Mono,
 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import PageLoader from "@/components/PageLoader";
@@ -110,6 +112,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <LenisProvider>
           {children}
         </LenisProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
