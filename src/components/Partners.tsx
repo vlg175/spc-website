@@ -47,16 +47,6 @@ const PARTNERS: Partner[] = [
     logoPad: "4px 0",
   },
   {
-    name: "EVRAZ",
-    short: "EVRAZ",
-    country: "Russia",
-    flag: "RU",
-    roleKey: "role_raw_material",
-    accent: "#E07020",
-    logo: "/images/partners/Evraz.svg.png",
-    logoPad: "6px 0",
-  },
-  {
     name: "HUAYE",
     short: "HUAYE",
     country: "China",
@@ -75,16 +65,6 @@ const PARTNERS: Partner[] = [
     accent: "#0070F2",
     logo: "/images/partners/sap.svg",
     logoPad: "4px 8px",
-  },
-  {
-    name: "MMK",
-    short: "MMK",
-    country: "Russia",
-    flag: "RU",
-    roleKey: "role_raw_material",
-    accent: "#1A4A9C",
-    logo: "/images/partners/logo-mmk.png",
-    logoPad: "8px 0",
   },
   {
     name: "TTZ",

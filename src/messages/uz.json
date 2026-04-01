@@ -23,7 +23,7 @@
     "heading2": "Standartlar bilan yuradi.",
     "story1": "SPC — Angren SEZda joylashgan o'zbek-xitoy qo'shma korxonasi. Birinchi kundan maqsad: O'zbekiston hududida xalqaro standartlarga mos po'lat quvurlar ishlab chiqarish.",
     "story2": "Birinchi ERW liniyasi 2019-yil dekabr oyida ishga tushirildi. O'shandan beri — uchta ishlab chiqarish liniyasi, har yili modernizatsiya va quvvatning uzluksiz o'sishi.",
-    "story3": "200+ mutaxassis, sertifikatlangan ishlab chiqarish, Qarmet, EVRAZ, HUAYE va MMK bilan hamkorlik. Barcha mahsulotlar GOST sertifikatiga ega. Ekologik mas'uliyat jarayonga singdirilgan, hisobot uchun qo'shilmagan.",
+    "story3": "200+ mutaxassis, sertifikatlangan ishlab chiqarish, Qarmet, HUAYE, SAP va TTZ bilan hamkorlik. Barcha mahsulotlar GOST sertifikatiga ega. Ekologik mas'uliyat jarayonga singdirilgan, hisobot uchun qo'shilmagan.",
     "sez": "Angren SEZ · Ohangaron tumani, Toshkent viloyati",
     "motto": "\"Biz burchaklarni qirqmaymiz. Biz po'latni qirqamiz.\"",
     "stat_workers": "Mahalliy xodimlar",
@@ -77,7 +77,7 @@
     "profile_name": "To'rtburchak kesim",
     "profile_tagline": "Maxsus geometriya. Standart sifat.",
     "profile_desc": "Qurilish, ko'priklar, avtomobil sanoati va sanoat ilovalari uchun to'rtburchak profillar. Xuddi shu sertifikatlangan sifat, moslashuvchan shakl.",
-    "profile_specs": "▭ 30×20–200×160 mm · Devor 1,5–7 mm"
+    "profile_specs": "▭ 30×20–200×160 mm · Devor 1,4–6,5 mm"
   },
   "quality": {
     "label": "Standartlar",
@@ -102,7 +102,7 @@
     "heading1": "Dunyoning eng yaxshilari biz bilan.",
     "heading2_accent": "Sifat manbadan boshlanadi.",
     "sub": "Dunyoning yetakchi po'lat ishlab chiqaruvchilari va texnologiya kompaniyalari bilan hamkorlik shartnomalarimiz xom ashyo sifatini liniyamizga birinchi rulon kirishidan oldin kafolatlaydi.",
-    "note": "Rulon — Qarmet, KZ · EVRAZ, RU · MMK, RU · Texnologiya — HUAYE, Xitoy · ERP — SAP, Germaniya · Sanoat — TTZ, UZ",
+    "note": "Rulon — Qarmet, KZ · Texnologiya — HUAYE, Xitoy · ERP — SAP, Germaniya · Sanoat — TTZ, UZ",
     "role_raw_material": "Xom ashyo",
     "role_technology": "Texnologiya",
     "role_software_erp": "Dasturiy ta'minot / ERP",
