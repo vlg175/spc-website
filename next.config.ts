@@ -9,6 +9,30 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      /* ── Immutable cache for hashed static assets ───────────────────────── */
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      /* ── Long cache for public images / fonts / PDFs ────────────────────── */
+      {
+        source: "/images/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+        ],
+      },
+      {
+        source: "/catalogs/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" },
+        ],
+      },
+      /* ── Security headers on all routes ─────────────────────────────────── */
       {
         source: "/(.*)",
         headers: [

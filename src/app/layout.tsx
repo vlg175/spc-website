@@ -27,8 +27,7 @@ const oswald = Oswald({
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin", "cyrillic"],
   variable: "--font-body",
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
+  weight: ["400", "500"],
   display: "swap",
 });
 

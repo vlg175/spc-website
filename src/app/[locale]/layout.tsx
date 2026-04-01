@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/Navbar";
@@ -8,6 +8,14 @@ import Footer from "@/components/Footer";
 import SocialIcons from "@/components/SocialIcons";
 import BackToTop from "@/components/BackToTop";
 import LocaleSync from "@/components/LocaleSync";
+
+/* ── Static generation — pre-render all 3 locales at build time ──────────
+   Without this, every request hits a serverless cold start (~2s TTFB).
+   With this, pages are served from Vercel's CDN edge (<100ms TTFB).
+   ──────────────────────────────────────────────────────────────────────── */
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 /* ── Locale Layout ─────────────────────────────────────────────
    Validates locale, provides i18n messages, syncs <html lang>.
@@ -26,6 +34,9 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  /* Must be called before any next-intl server function (getMessages, etc.) */
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 
