@@ -5,7 +5,7 @@ export const SITE = {
   tagline: "Совершенство в каждом миллиметре",
   description: "Узбекско-китайское совместное предприятие по производству стальных труб",
   founded: 2018,
-  url: "https://steelpipe.uz",
+  url: "https://www.steelpipe.uz",
 } as const;
 
 export const CONTACT = {

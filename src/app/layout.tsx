@@ -40,7 +40,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 /* ── Metadata ──────────────────────────────────────────────── */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://steelpipe.uz"),
+  metadataBase: new URL("https://www.steelpipe.uz"),
   title: "SPC — Steel Pipe Company | ERW Steel Pipes",
   description:
     "ERW electric resistance welded steel pipe manufacturer. Uzbek-Chinese joint venture. SEZ Angren, Tashkent Region, Uzbekistan. Round, square and profile pipes to GOST and EN standards.",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: {
-      ru: "/ru",
+      ru: "/",
       en: "/en",
       uz: "/uz",
     },
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     description:
       "ERW electric resistance welded steel pipe manufacturer. Uzbek-Chinese JV. SEZ Angren, Uzbekistan. GOST-certified round, square and profile pipes.",
     type: "website",
-    url: "https://steelpipe.uz",
+    url: "https://www.steelpipe.uz",
     locale: "ru_RU",
     alternateLocale: ["en_US", "uz_UZ"],
     siteName: "SPC Steel Pipe Company",

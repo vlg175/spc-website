@@ -1,21 +1,34 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://steelpipe.uz";
+const BASE_URL = "https://www.steelpipe.uz";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["ru", "en", "uz"] as const;
-
-  return locales.map((locale) => ({
-    url: `${BASE_URL}/${locale}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: locale === "ru" ? 1.0 : 0.9,
-    alternates: {
-      languages: {
-        ru: `${BASE_URL}/ru`,
-        en: `${BASE_URL}/en`,
-        uz: `${BASE_URL}/uz`,
+  /* localePrefix:"as-needed" — default locale (ru) lives at "/", not "/ru" */
+  return [
+    {
+      url: `${BASE_URL}/`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 1.0,
+      alternates: {
+        languages: {
+          ru:   `${BASE_URL}/`,
+          en:   `${BASE_URL}/en`,
+          uz:   `${BASE_URL}/uz`,
+        },
       },
     },
-  }));
+    {
+      url: `${BASE_URL}/en`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/uz`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+  ];
 }

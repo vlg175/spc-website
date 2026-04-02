@@ -81,8 +81,8 @@ export default async function LocaleLayout({
     "@type": "Organization",
     name: "Steel Pipe Company",
     legalName: "ООО «STEEL PIPE COMPANY»",
-    url: "https://steelpipe.uz",
-    logo: "https://steelpipe.uz/logo_SPC.png",
+    url: "https://www.steelpipe.uz",
+    logo: "https://www.steelpipe.uz/logo_SPC.png",
     foundingDate: "2018",
     description:
       "Uzbek-Chinese joint venture producing ERW electric resistance welded steel pipes and profiles. GOST-certified. Located in SEZ Angren Free Economic Zone, Uzbekistan.",
